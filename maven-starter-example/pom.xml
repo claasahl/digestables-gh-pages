@@ -6,15 +6,9 @@
 	<packaging>jar</packaging>
 	<version>0.1.0</version>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.github.claasahl</groupId>
-				<artifactId>maven-starter-bom</artifactId>
-				<version>0.1.0</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<parent>
+		<groupId>org.github.claasahl</groupId>
+		<artifactId>maven-starter-bom</artifactId>
+		<version>0.1.0</version>
+	</parent>
 </project>
