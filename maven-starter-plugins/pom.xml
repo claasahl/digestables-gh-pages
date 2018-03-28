@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.github.claasahl</groupId>
-	<artifactId>maven-starter-bom</artifactId>
+	<artifactId>maven-starter-plugins</artifactId>
 	<packaging>pom</packaging>
 	<version>0.1.0</version>
-	<description>BOM (Bill of Material) Project</description>
+	<description>This project configures several commonly used plugins.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,10 +63,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>
-			<plugin>
-				<artifactId>maven-enforcer-plugin</artifactId>
-			</plugin>
-		</plugins>
 	</build>
 </project>
