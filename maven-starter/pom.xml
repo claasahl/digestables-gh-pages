@@ -9,6 +9,7 @@
 		<groupId>org.github.claasahl</groupId>
 		<artifactId>maven-starter-plugins</artifactId>
 		<version>0.1.0</version>
+		<relativePath>../maven-starter-plugins</relativePath>
 	</parent>
 
 	<properties>
