@@ -4,7 +4,7 @@
 	<artifactId>maven-starter-bom</artifactId>
 	<packaging>pom</packaging>
 	<description>BOM (Bill of Material) Project</description>
-	
+
 	<parent>
 		<groupId>org.github.claasahl</groupId>
 		<artifactId>maven-starter-plugins</artifactId>
@@ -19,6 +19,10 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
