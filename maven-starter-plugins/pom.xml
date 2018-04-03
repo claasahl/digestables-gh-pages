@@ -78,6 +78,18 @@
 					</executions>
 				</plugin>
 				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.maven-site-plugin}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.maven-project-info-reports-plugin}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jxr-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.maven-jxr-plugin}</version>
+				</plugin>
+				<plugin>
 					<artifactId>maven-pmd-plugin</artifactId>
 					<version>${version.org.apache.maven.plugins.maven-pmd-plugin}</version>
 					<configuration>
@@ -85,9 +97,10 @@
 					</configuration>
 					<executions>
 						<execution>
+							<phase>site</phase>
 							<goals>
-								<goal>check</goal>
-								<goal>cpd-check</goal>
+								<goal>pmd</goal>
+								<goal>cpd</goal>
 							</goals>
 						</execution>
 					</executions>
@@ -99,15 +112,15 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>${version.org.apache.maven.plugins.maven-site-plugin}</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>${version.org.apache.maven.plugins.maven-project-info-reports-plugin}</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>${version.org.apache.maven.plugins.maven-jxr-plugin}</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</reporting>
