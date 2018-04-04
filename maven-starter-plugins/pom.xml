@@ -16,9 +16,6 @@
 		<version.org.codehaus.mojo.findbugs-maven-plugin>3.0.5</version.org.codehaus.mojo.findbugs-maven-plugin>
 		<version.net.revelc.code.formatter.formatter-maven-plugin>2.7.3</version.net.revelc.code.formatter.formatter-maven-plugin>
 		<version.org.apache.maven.plugins.maven-pmd-plugin>3.9.0</version.org.apache.maven.plugins.maven-pmd-plugin>
-		<version.org.apache.maven.plugins.maven-site-plugin>3.7.1</version.org.apache.maven.plugins.maven-site-plugin>
-		<version.org.apache.maven.plugins.maven-project-info-reports-plugin>2.9</version.org.apache.maven.plugins.maven-project-info-reports-plugin>
-		<version.org.apache.maven.plugins.maven-jxr-plugin>2.5</version.org.apache.maven.plugins.maven-jxr-plugin>
 	</properties>
 	<build>
 		<pluginManagement>
@@ -78,29 +75,17 @@
 					</executions>
 				</plugin>
 				<plugin>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.maven-site-plugin}</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.maven-project-info-reports-plugin}</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-jxr-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.maven-jxr-plugin}</version>
-				</plugin>
-				<plugin>
 					<artifactId>maven-pmd-plugin</artifactId>
 					<version>${version.org.apache.maven.plugins.maven-pmd-plugin}</version>
 					<configuration>
 						<analysisCache>true</analysisCache>
+						<linkXRef>false</linkXRef>
 					</configuration>
 					<executions>
 						<execution>
-							<phase>site</phase>
 							<goals>
-								<goal>pmd</goal>
-								<goal>cpd</goal>
+								<goal>check</goal>
+								<goal>cpd-check</goal>
 							</goals>
 						</execution>
 					</executions>
@@ -108,20 +93,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<artifactId>maven-site-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-jxr-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-pmd-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>
