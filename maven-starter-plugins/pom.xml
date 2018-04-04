@@ -74,22 +74,6 @@
 						</execution>
 					</executions>
 				</plugin>
-				<plugin>
-					<artifactId>maven-pmd-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.maven-pmd-plugin}</version>
-					<configuration>
-						<analysisCache>true</analysisCache>
-						<linkXRef>false</linkXRef>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>check</goal>
-								<goal>cpd-check</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
