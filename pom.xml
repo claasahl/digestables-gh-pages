@@ -6,7 +6,6 @@
 	<packaging>pom</packaging>
 	<version>0.1.0</version>
 	<modules>
-		<module>maven-starter-plugins</module>
 		<module>maven-starter</module>
 		<module>maven-starter-example</module>
 	</modules>
