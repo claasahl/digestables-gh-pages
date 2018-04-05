@@ -35,6 +35,6 @@ task copy(type: Copy, group: "Custom", description: "Copies sources to the dest 
     into "dest"
 }
 
-task zip(type: Zip, group: "Archive", description: "Archives source files in a ZIP file") {
+task zip(type: Zip, group: "Custom", description: "Archives source files in a ZIP file") {
 	from "src"
 }
