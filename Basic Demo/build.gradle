@@ -5,6 +5,9 @@
  * For more details take a look at the Java Libraries chapter in the Gradle
  * user guide available at https://docs.gradle.org/3.5/userguide/java_library_plugin.html
  */
+plugins {
+    id "base"
+}
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
@@ -32,3 +35,6 @@ task copy(type: Copy, group: "Custom", description: "Copies sources to the dest 
     into "dest"
 }
 
+task zip(type: Zip, group: "Archive", description: "Archives source files in a ZIP file") {
+	from "src"
+}
