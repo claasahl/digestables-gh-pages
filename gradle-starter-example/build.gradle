@@ -1,8 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'findbugs'
-apply plugin: 'pmd'
-
+plugins {
+    id 'java'
+    id 'application'
+    id 'findbugs'
+    id 'pmd'
+}
 
 
 // In this section you declare where to find the dependencies of your project
@@ -21,3 +22,4 @@ dependencies {
 }
 
 mainClassName = 'org.github.claasahl.HelloWorld'
+
