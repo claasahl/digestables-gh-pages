@@ -7,19 +7,31 @@
     "react-dom": "^16.4.0",
     "react-scripts-ts": "2.16.0"
   },
-  "lint-staged": {
-    "src/**/*.{ts,tsx,json,css}": [
-      "prettier --trailing-comma es5 --write",
-      "git add"
-    ]
-  },
-    "scripts": {
+      "scripts": { 
     "precommit": "lint-staged",
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "pretty": "prettier --trailing-comma es5 --write"
   },
+
+
+
+
+  "lint-staged": {
+    "src/**/*.{ts,tsx,json,css}": [
+      "npm run pretty",
+      "git add"
+    ]
+  },
+
+
+
+
+
+
+
   "devDependencies": {
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.3",
