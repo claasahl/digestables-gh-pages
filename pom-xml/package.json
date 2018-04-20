@@ -14,12 +14,6 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
-  "lint-staged": {
-    "src/**/*.{ts,tsx,json,css}": [
-      "npm run pretty",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.3",
