@@ -1,5 +1,5 @@
 import * as React from "react";
-import { parseString } from "xml2js";
+import { Parser } from "xml2js";
 import "./App.css";
 
 import logo from "./logo.svg";
@@ -20,7 +20,8 @@ class App extends React.Component {
   </project>
   `;
     let sample3;
-    parseString(data, (err, result) => {
+    const parser = new Parser();
+    parser.parseString(data, (err: any, result: any) => {
       sample3 = result;
     });
 
