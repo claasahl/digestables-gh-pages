@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Parser } from "xml2js";
+import { Builder, Parser } from "xml2js";
 import "./App.css";
 
 import logo from "./logo.svg";
@@ -25,7 +25,9 @@ class App extends React.Component {
       sample3 = result;
     });
 
-    const sample = JSON.stringify({ test: "testttt" });
+    const builder = new Builder();
+    const sample = builder.buildObject(sample3);
+
     const sample2 = JSON.stringify(sample3);
     return (
       <div className="App">
