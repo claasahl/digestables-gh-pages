@@ -5,6 +5,35 @@ import "./App.css";
 
 import logo from "./logo.svg";
 
+function fixArrays(pomXml: any) {
+  const clonedPomXml = Object.assign(pomXml);
+  if (
+    clonedPomXml.project.build &&
+    clonedPomXml.project.build.plugins &&
+    clonedPomXml.project.build.plugins.plugin &&
+    !(clonedPomXml.project.build.plugins.plugin instanceof Array)
+  ) {
+    clonedPomXml.project.build.plugins.plugin = [
+      clonedPomXml.project.build.plugins.plugin
+    ];
+  }
+  if (
+    clonedPomXml.project.build &&
+    clonedPomXml.project.build.pluginManagement &&
+    clonedPomXml.project.build.pluginManagement.plugins &&
+    clonedPomXml.project.build.pluginManagement.plugins.plugin &&
+    !(
+      clonedPomXml.project.build.pluginManagement.plugins.plugin instanceof
+      Array
+    )
+  ) {
+    clonedPomXml.project.build.pluginManagement.plugins.plugin = [
+      clonedPomXml.project.build.pluginManagement.plugins.plugin
+    ];
+  }
+  return clonedPomXml;
+}
+
 class App extends React.Component {
   public render() {
     const data = `<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -113,9 +142,6 @@ class App extends React.Component {
     <build>
     <plugins>
         <plugin>
-          <artifactId>maven-enforcer-plugin</artifactId>
-        </plugin>
-        <plugin>
           <groupId>group</groupId>
           <artifactId>artifact</artifactId>
         </plugin>
@@ -130,13 +156,13 @@ class App extends React.Component {
     const options = { explicitArray: false };
     const parser = new Parser(options);
     parser.parseString(data, (err: any, result: any) => {
-      sample3 = result;
+      sample3 = fixArrays(result);
     });
 
     let sample4;
     parser.reset();
     parser.parseString(data2, (err: any, result: any) => {
-      sample4 = result;
+      sample4 = fixArrays(result);
     });
 
     const builder = new Builder();
