@@ -127,7 +127,8 @@ class App extends React.Component {
     </modules>
   </project>`;
     let sample3;
-    const parser = new Parser();
+    const options = { explicitArray: false };
+    const parser = new Parser(options);
     parser.parseString(data, (err: any, result: any) => {
       sample3 = result;
     });
