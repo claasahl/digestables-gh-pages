@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap-css": "^4.0.0-alpha.5",
+    "bootstrap": "^4.1.1",
     "deepmerge": "^2.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
