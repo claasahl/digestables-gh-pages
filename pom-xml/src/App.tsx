@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import deepmerge from "deepmerge";
 import * as React from "react";
 import { Builder, Parser } from "xml2js";
@@ -54,13 +55,31 @@ class App extends React.Component {
     const sample = builder.buildObject(sample5);
 
     return (
-      <div className="App">
-        <a
-          href={"data:text/plain;charset=utf-8," + encodeURIComponent(sample)}
-          download="pom.xml"
-        >
-          recipe
-        </a>
+      <div className="container grid-wrapper">
+        <div id="reciper-composer">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Recipient's username"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary" type="button">
+                Button
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="recipe-download">
+          <a
+            href={"data:text/plain;charset=utf-8," + encodeURIComponent(sample)}
+            download="pom.xml"
+          >
+            recipe
+          </a>
+        </div>
       </div>
     );
   }
