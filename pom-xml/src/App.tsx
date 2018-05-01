@@ -5,8 +5,6 @@ import "./App.css";
 import Sample1 from "./recipes/Sample1";
 import Sample2 from "./recipes/Sample2";
 
-import logo from "./logo.svg";
-
 function fixArrays(pomXml: any) {
   const clonedPomXml = Object.assign(pomXml);
   if (
@@ -57,22 +55,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div>
-          <h3>Big Sample:</h3>
-          <code>{JSON.stringify(sample3)}</code>
-        </div>
-        <div>
-          <h3>Small Sample:</h3>
-          <code>{JSON.stringify(sample4)}</code>
-        </div>
-        <div>
-          <h3>Merged Samples:</h3>
-          <code>{JSON.stringify(sample5)}</code>
-        </div>
         <a
           href={"data:text/plain;charset=utf-8," + encodeURIComponent(sample)}
           download="pom.xml"
