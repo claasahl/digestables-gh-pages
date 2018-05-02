@@ -35,7 +35,24 @@ function fixArrays(pomXml: any) {
   return clonedPomXml;
 }
 
-class App extends React.Component {
+interface IRecipe {
+  name: string;
+  xml: string;
+}
+
+interface IAppState {
+  recipes: IRecipe[];
+}
+
+class App extends React.Component<{}, IAppState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      recipes: []
+    };
+    this.handleButton = this.handleButton.bind(this);
+  }
+
   public render() {
     let sample3;
     const options = { explicitArray: false };
@@ -53,6 +70,7 @@ class App extends React.Component {
     const builder = new Builder();
     const sample5 = deepmerge(sample3, sample4);
     const sample = builder.buildObject(sample5);
+    const recipes = this.state.recipes;
 
     return (
       <div className="container grid-wrapper">
@@ -66,12 +84,22 @@ class App extends React.Component {
               aria-describedby="basic-addon2"
             />
             <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button">
+              <button
+                className="btn btn-outline-secondary"
+                onClick={this.handleButton}
+                type="button"
+              >
                 Button
               </button>
             </div>
           </div>
         </div>
+        {recipes.map(({ name, xml }) => (
+          <div key="${name}">
+            <h3>{name}</h3>
+            <code>{xml}</code>
+          </div>
+        ))}
         <div id="recipe-download">
           <a
             href={"data:text/plain;charset=utf-8," + encodeURIComponent(sample)}
@@ -82,6 +110,18 @@ class App extends React.Component {
         </div>
       </div>
     );
+  }
+
+  private handleButton(event: React.MouseEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+    const numRecipes = this.state.recipes.length;
+    const recipe = {
+      name: `name${numRecipes}`,
+      xml: "<data></data>"
+    };
+    this.setState(state => ({
+      recipes: [...state.recipes, recipe]
+    }));
   }
 }
 
