@@ -1,3 +1,5 @@
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
 import deepmerge from "deepmerge";
 import * as React from "react";
@@ -89,7 +91,7 @@ class App extends React.Component<{}, IAppState> {
                 onClick={this.handleButton}
                 type="button"
               >
-                button
+                <FontAwesomeIcon icon={faCoffee} />
               </button>
             </div>
           </div>
