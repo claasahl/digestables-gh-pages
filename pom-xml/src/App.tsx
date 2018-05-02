@@ -1,6 +1,8 @@
+import * as faCoffee from "@fortawesome/fontawesome-free-solid/faCoffee";
 import "bootstrap/dist/css/bootstrap.min.css";
 import deepmerge from "deepmerge";
 import * as React from "react";
+import * as FontAwesome from "react-fontawesome";
 import { Builder, Parser } from "xml2js";
 import "./App.css";
 import Sample1 from "./recipes/Sample1";
@@ -89,7 +91,7 @@ class App extends React.Component<{}, IAppState> {
                 onClick={this.handleButton}
                 type="button"
               >
-                Button
+                <FontAwesome icon={faCoffee} />
               </button>
             </div>
           </div>
