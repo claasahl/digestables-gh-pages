@@ -82,8 +82,6 @@ class App extends React.Component<{}, IAppState> {
               type="text"
               className="form-control"
               placeholder="Recipient's username"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
             />
             <div className="input-group-append">
               <button
