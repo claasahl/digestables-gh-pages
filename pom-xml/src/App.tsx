@@ -1,12 +1,17 @@
-import { faCircle, faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
-import deepmerge from "deepmerge";
 import * as React from "react";
-import { Builder, Parser } from "xml2js";
 import "./App.css";
+
+import deepmerge from "deepmerge";
+import { Builder, Parser } from "xml2js";
 import Sample1 from "./recipes/Sample1";
 import Sample2 from "./recipes/Sample2";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(fas);
 
 function fixArrays(pomXml: any) {
   const clonedPomXml = Object.assign(pomXml);
@@ -89,7 +94,7 @@ class App extends React.Component<{}, IAppState> {
                 onClick={this.handleButton}
                 type="button"
               >
-                <FontAwesomeIcon icon={faCoffee} />
+                <FontAwesomeIcon icon="coffee" />
               </button>
             </div>
           </div>
@@ -99,7 +104,7 @@ class App extends React.Component<{}, IAppState> {
             <div key="${name}" className="h1">
               <span className="badge badge-light">
                 ${name}
-                <FontAwesomeIcon icon={faCoffee} mask={faCircle} />
+                <FontAwesomeIcon icon="coffee" mask="circle" />
               </span>
             </div>
           ))}
