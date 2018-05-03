@@ -1,4 +1,4 @@
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faCircle, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "bootstrap/dist/css/bootstrap.min.css";
 import deepmerge from "deepmerge";
@@ -76,7 +76,7 @@ class App extends React.Component<{}, IAppState> {
 
     return (
       <div className="container grid-wrapper">
-        <div id="reciper-composer">
+        <div id="recipe-composer">
           <div className="input-group mb-3">
             <input
               type="text"
@@ -94,12 +94,16 @@ class App extends React.Component<{}, IAppState> {
             </div>
           </div>
         </div>
-        {recipes.map(({ name, xml }) => (
-          <div key="${name}">
-            <h3>{name}</h3>
-            <code>{xml}</code>
-          </div>
-        ))}
+        <div id="recipes">
+          {recipes.map(({ name, xml }) => (
+            <div key="${name}" className="h1">
+              <span className="badge badge-light">
+                ${name}
+                <FontAwesomeIcon icon={faCoffee} mask={faCircle} />
+              </span>
+            </div>
+          ))}
+        </div>
         <div id="recipe-download">
           <a
             href={"data:text/plain;charset=utf-8," + encodeURIComponent(sample)}
