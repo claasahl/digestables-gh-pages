@@ -78,6 +78,7 @@ class App extends React.Component<{}, IAppState> {
     const sample5 = deepmerge(sample3, sample4);
     const sample = builder.buildObject(sample5);
     const recipes = this.state.recipes;
+    const dataUrl = this.generateDataURL(sample);
 
     return (
       <div className="container grid-wrapper">
@@ -100,9 +101,7 @@ class App extends React.Component<{}, IAppState> {
             <div className="input-group-append">
               <a
                 className="btn btn-outline-secondary"
-                href={
-                  "data:text/plain;charset=utf-8," + encodeURIComponent(sample)
-                }
+                href={dataUrl}
                 download="pom.xml"
               >
                 <FontAwesomeIcon icon="cloud-download-alt" />
@@ -122,6 +121,10 @@ class App extends React.Component<{}, IAppState> {
         </div>
       </div>
     );
+  }
+
+  private generateDataURL(content: string): string {
+    return "data:text/plain;charset=utf-8," + encodeURIComponent(content);
   }
 
   private handleButton(event: React.MouseEvent<HTMLButtonElement>): void {
