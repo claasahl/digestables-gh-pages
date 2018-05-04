@@ -94,7 +94,19 @@ class App extends React.Component<{}, IAppState> {
                 onClick={this.handleButton}
                 type="button"
               >
-                <FontAwesomeIcon icon="coffee" />
+                <span className="fa-layers fa-fw">
+                  <FontAwesomeIcon icon="square" color="green" />
+                  <FontAwesomeIcon
+                    icon="check"
+                    inverse={true}
+                    transform="shrink-6"
+                  />
+                </span>
+                <FontAwesomeIcon
+                  icon="pencil-alt"
+                  transform="shrink-10 up-.5"
+                  mask="comment"
+                />
               </button>
             </div>
           </div>
