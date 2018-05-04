@@ -94,8 +94,19 @@ class App extends React.Component<{}, IAppState> {
                 onClick={this.handleButton}
                 type="button"
               >
-                <FontAwesomeIcon icon="cloud-download-alt" />
+                <FontAwesomeIcon icon="plus-square" />
               </button>
+            </div>
+            <div className="input-group-append">
+              <a
+                className="btn btn-outline-secondary"
+                href={
+                  "data:text/plain;charset=utf-8," + encodeURIComponent(sample)
+                }
+                download="pom.xml"
+              >
+                <FontAwesomeIcon icon="cloud-download-alt" />
+              </a>
             </div>
           </div>
         </div>
@@ -108,14 +119,6 @@ class App extends React.Component<{}, IAppState> {
               </span>
             </div>
           ))}
-        </div>
-        <div id="recipe-download">
-          <a
-            href={"data:text/plain;charset=utf-8," + encodeURIComponent(sample)}
-            download="pom.xml"
-          >
-            recipe
-          </a>
         </div>
       </div>
     );
