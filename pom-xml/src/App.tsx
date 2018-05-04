@@ -94,19 +94,7 @@ class App extends React.Component<{}, IAppState> {
                 onClick={this.handleButton}
                 type="button"
               >
-                <span className="fa-layers fa-fw">
-                  <FontAwesomeIcon icon="square" color="green" />
-                  <FontAwesomeIcon
-                    icon="check"
-                    inverse={true}
-                    transform="shrink-6"
-                  />
-                </span>
-                <FontAwesomeIcon
-                  icon="pencil-alt"
-                  transform="shrink-10 up-.5"
-                  mask="comment"
-                />
+                <FontAwesomeIcon icon="cloud-download-alt" />
               </button>
             </div>
           </div>
@@ -116,7 +104,7 @@ class App extends React.Component<{}, IAppState> {
             <div key="${name}" className="h1">
               <span className="badge badge-light">
                 ${name}
-                <FontAwesomeIcon icon="coffee" mask="circle" />
+                <FontAwesomeIcon icon="window-close" transform="shrink-5" />
               </span>
             </div>
           ))}
