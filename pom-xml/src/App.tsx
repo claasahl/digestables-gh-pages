@@ -42,20 +42,20 @@ function fixArrays(pomXml: any) {
   return clonedPomXml;
 }
 
-interface IRecipe {
+interface IIngredient {
   name: string;
   xml: string;
 }
 
 interface IAppState {
-  recipes: IRecipe[];
+  ingredients: IIngredient[];
 }
 
 class App extends React.Component<{}, IAppState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      recipes: []
+      ingredients: []
     };
     this.handleButton = this.handleButton.bind(this);
   }
@@ -77,7 +77,6 @@ class App extends React.Component<{}, IAppState> {
     const builder = new Builder();
     const sample5 = deepmerge(sample3, sample4);
     const sample = builder.buildObject(sample5);
-    const recipes = this.state.recipes;
     const dataUrl = this.generateDataURL(sample);
 
     return (
@@ -110,7 +109,7 @@ class App extends React.Component<{}, IAppState> {
           </div>
         </div>
         <div id="recipes">
-          {recipes.map(({ name, xml }) => (
+          {this.state.ingredients.map(({ name, xml }) => (
             <div key="${name}" className="h1">
               <span className="badge badge-light">
                 ${name}
@@ -129,13 +128,13 @@ class App extends React.Component<{}, IAppState> {
 
   private handleButton(event: React.MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
-    const numRecipes = this.state.recipes.length;
-    const recipe = {
-      name: `name${numRecipes}`,
+    const numIngredients = this.state.ingredients.length;
+    const ingredient = {
+      name: `name${numIngredients}`,
       xml: "<data></data>"
     };
     this.setState(state => ({
-      recipes: [...state.recipes, recipe]
+      ingredients: [...state.ingredients, ingredient]
     }));
   }
 }
