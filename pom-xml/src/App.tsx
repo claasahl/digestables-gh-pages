@@ -10,8 +10,13 @@ import Sample2 from "./recipes/Sample2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as CopyToClipboard from "react-copy-to-clipboard";
 
 library.add(fas);
+
+function test(value: string, name: string): string {
+  return `${value}[${name}]`;
+}
 
 function fixArrays(pomXml: any) {
   const clonedPomXml = Object.assign(pomXml);
@@ -62,7 +67,7 @@ class App extends React.Component<{}, IAppState> {
 
   public render() {
     let sample3;
-    const options = { explicitArray: false };
+    const options = { explicitArray: false, attrValueProcessors: [test] };
     const parser = new Parser(options);
     parser.parseString(Sample1, (err: any, result: any) => {
       sample3 = fixArrays(result);
@@ -105,6 +110,13 @@ class App extends React.Component<{}, IAppState> {
               >
                 <FontAwesomeIcon icon="cloud-download-alt" />
               </a>
+            </div>
+            <div className="input-group-append">
+              <CopyToClipboard text={sample}>
+                <button className="btn btn-outline-secondary" type="button">
+                  <FontAwesomeIcon icon="clipboard" />
+                </button>
+              </CopyToClipboard>
             </div>
           </div>
         </div>
