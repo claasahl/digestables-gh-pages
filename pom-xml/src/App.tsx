@@ -3,14 +3,15 @@ import * as React from "react";
 import "./App.css";
 
 import deepmerge from "deepmerge";
+import * as CopyToClipboard from "react-copy-to-clipboard";
 import { Builder, Parser } from "xml2js";
+import Ingredient from "./Ingredient";
 import Sample1 from "./recipes/Sample1";
 import Sample2 from "./recipes/Sample2";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as CopyToClipboard from "react-copy-to-clipboard";
 
 library.add(fas);
 
@@ -123,6 +124,11 @@ class App extends React.Component<{}, IAppState> {
         <div id="recipes">
           {this.state.ingredients.map(({ name, xml }) => (
             <div key="${name}" className="h1">
+              <Ingredient
+                name={name}
+                xmlContent={xml}
+                onRemove={this.removeIngredient}
+              />
               <span className="badge badge-light">
                 ${name}
                 <FontAwesomeIcon icon="window-close" transform="shrink-5" />
@@ -136,6 +142,10 @@ class App extends React.Component<{}, IAppState> {
 
   private generateDataURL(content: string): string {
     return "data:text/plain;charset=utf-8," + encodeURIComponent(content);
+  }
+
+  private removeIngredient(name: string) {
+    // do something
   }
 
   private handleButton(event: React.MouseEvent<HTMLButtonElement>): void {
