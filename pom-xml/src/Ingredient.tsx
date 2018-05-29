@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import "./Ingredient.css";
 
@@ -9,7 +10,12 @@ interface IngrediantProps {
 
 class Ingrediant extends React.Component<IngrediantProps> {
   public render() {
-    return "I am an Ingrediant";
+    return (
+      <span className="badge badge-light">
+        ${this.props.name}
+        <FontAwesomeIcon icon="window-close" transform="shrink-5" />
+      </span>
+    );
   }
 }
 export default Ingrediant;

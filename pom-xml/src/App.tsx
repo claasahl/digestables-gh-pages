@@ -129,10 +129,6 @@ class App extends React.Component<{}, IAppState> {
                 xmlContent={xml}
                 onRemove={this.removeIngredient}
               />
-              <span className="badge badge-light">
-                ${name}
-                <FontAwesomeIcon icon="window-close" transform="shrink-5" />
-              </span>
             </div>
           ))}
         </div>
