@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import * as React from "react";
 import "./Recipe.css";
 
@@ -7,14 +8,14 @@ interface IIngredient {
 }
 
 interface IRecipeState {
-  ingredients: IIngredient[];
+  ingredients: Map<string, IIngredient>;
 }
 
 class Recipe extends React.Component<any, IRecipeState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      ingredients: []
+      ingredients: Map<string, IIngredient>()
     };
     this.handleSampleAdd = this.handleSampleAdd.bind(this);
     this.handleSampleRemove = this.handleSampleRemove.bind(this);
@@ -24,7 +25,12 @@ class Recipe extends React.Component<any, IRecipeState> {
       <div>
         <button onClick={this.handleSampleAdd}>add</button>
         <button onClick={this.handleSampleRemove}>remove</button>
-        {this.state.ingredients.map(({ name }) => <div key={name}>{name}</div>)}
+        {this.state.ingredients.valueSeq().map(ingredient => {
+          if (ingredient === undefined) {
+            return "";
+          }
+          return <div key={ingredient.name}>{ingredient.name}</div>;
+        })}
       </div>
     );
   }
@@ -41,18 +47,19 @@ class Recipe extends React.Component<any, IRecipeState> {
 
   private add(ingredient: IIngredient): void {
     this.setState(state => ({
-      ingredients: [...state.ingredients, ingredient]
+      ingredients: Map<string, IIngredient>(state.ingredients).set(
+        ingredient.name,
+        ingredient
+      )
     }));
   }
 
   private remove(ingredient: IIngredient): void {
-    this.setState(state => {
-      const ingredients = [...state.ingredients];
-      const index = ingredients.findIndex(value => value === ingredient);
-      return {
-        ingredients: index >= 0 ? ingredients.splice(index, 1) : ingredients
-      };
-    });
+    this.setState(state => ({
+      ingredients: Map<string, IIngredient>(state.ingredients).delete(
+        ingredient.name
+      )
+    }));
   }
 }
 
