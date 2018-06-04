@@ -16,10 +16,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(fas);
 
-function test(value: string, name: string): string {
-  return `${value}[${name}]`;
-}
-
 function fixArrays(pomXml: any) {
   const clonedPomXml = Object.assign(pomXml);
   if (
@@ -69,7 +65,7 @@ class App extends React.Component<{}, IAppState> {
 
   public render() {
     let sample3;
-    const options = { explicitArray: false, attrValueProcessors: [test] };
+    const options = { explicitArray: false };
     const parser = new Parser(options);
     parser.parseString(Sample1, (err: any, result: any) => {
       sample3 = fixArrays(result);
