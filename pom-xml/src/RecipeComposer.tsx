@@ -1,17 +1,17 @@
 import { Map } from "immutable";
 import * as React from "react";
-import "./Recipe.css";
+import "./RecipeComposer.css";
 
 interface IIngredient {
   name: string;
   xml: string;
 }
 
-interface IRecipeState {
+interface IRecipeComposerState {
   ingredients: Map<string, IIngredient>;
 }
 
-class Recipe extends React.Component<any, IRecipeState> {
+class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -64,4 +64,4 @@ class Recipe extends React.Component<any, IRecipeState> {
   }
 }
 
-export default Recipe;
+export default RecipeComposer;

@@ -7,7 +7,7 @@ import deepmerge from "deepmerge";
 import * as CopyToClipboard from "react-copy-to-clipboard";
 import { Builder, Parser } from "xml2js";
 import Ingredient from "./Ingredient";
-import Recipe from "./Recipe";
+import RecipeComposer from "./RecipeComposer";
 import Sample1 from "./recipes/Sample1";
 import Sample2 from "./recipes/Sample2";
 
@@ -85,7 +85,7 @@ class App extends React.Component<{}, IAppState> {
 
     return (
       <div className="container grid-wrapper">
-        <Recipe />
+        <RecipeComposer />
         <div id="recipe-composer">
           <div className="input-group mb-3">
             <input
