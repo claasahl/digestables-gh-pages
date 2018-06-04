@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from "react";
 import "./App.css";
 
+// FIXME: changed from "export = deepmerge;" to "export default deepmerge;"
 import deepmerge from "deepmerge";
 import * as CopyToClipboard from "react-copy-to-clipboard";
 import { Builder, Parser } from "xml2js";

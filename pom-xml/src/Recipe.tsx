@@ -26,6 +26,7 @@ class Recipe extends React.Component<any, IRecipeState> {
         <button onClick={this.handleSampleAdd}>add</button>
         <button onClick={this.handleSampleRemove}>remove</button>
         {this.state.ingredients.valueSeq().map(ingredient => {
+          // FIXME: why???? mapper: (value?: IIngredient | undefined ....
           if (ingredient === undefined) {
             return "";
           }
