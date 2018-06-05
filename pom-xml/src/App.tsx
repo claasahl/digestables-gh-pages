@@ -123,11 +123,7 @@ class App extends React.Component<{}, IAppState> {
         <div id="recipes">
           {this.state.ingredients.map(({ name, xml }) => (
             <div key="${name}" className="h1">
-              <Ingredient
-                name={name}
-                xmlContent={xml}
-                onRemove={this.removeIngredient}
-              />
+              <Ingredient name={name} onRemove={this.removeIngredient} />
             </div>
           ))}
         </div>

@@ -4,7 +4,6 @@ import "./Ingredient.css";
 
 interface IngredientProps {
   name: string;
-  xmlContent: string;
   onRemove: (name: string) => void;
 }
 
