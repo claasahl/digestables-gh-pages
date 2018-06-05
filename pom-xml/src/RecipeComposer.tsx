@@ -2,6 +2,8 @@ import { Map } from "immutable";
 import * as React from "react";
 import "./RecipeComposer.css";
 
+import Ingredient from "./Ingredient";
+
 interface IIngredient {
   name: string;
   xml: string;
@@ -19,6 +21,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     };
     this.handleSampleAdd = this.handleSampleAdd.bind(this);
     this.handleSampleRemove = this.handleSampleRemove.bind(this);
+    this.remove = this.remove.bind(this);
   }
   public render() {
     return (
@@ -30,7 +33,11 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
           if (ingredient === undefined) {
             return "";
           }
-          return <div key={ingredient.name}>{ingredient.name}</div>;
+          return (
+            <div key={ingredient.name}>
+              <Ingredient name={ingredient.name} onRemove={this.remove} />
+            </div>
+          );
         })}
       </div>
     );
@@ -43,7 +50,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
 
   private handleSampleRemove(event: React.MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
-    this.remove({ name: "test", xml: "<data></data>" });
+    this.remove("test");
   }
 
   private add(ingredient: IIngredient): void {
@@ -55,11 +62,9 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     }));
   }
 
-  private remove(ingredient: IIngredient): void {
+  private remove(name: string): void {
     this.setState(state => ({
-      ingredients: Map<string, IIngredient>(state.ingredients).delete(
-        ingredient.name
-      )
+      ingredients: Map<string, IIngredient>(state.ingredients).delete(name)
     }));
   }
 }
