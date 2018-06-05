@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import "./Ingredient.css";
 
-interface IngrediantProps {
+interface IngredientProps {
   name: string;
   xmlContent: string;
   onRemove: (name: string) => void;
 }
 
-class Ingrediant extends React.Component<IngrediantProps> {
+class Ingredient extends React.Component<IngredientProps> {
   public render() {
     return (
       <span className="badge badge-light">
@@ -18,4 +18,4 @@ class Ingrediant extends React.Component<IngrediantProps> {
     );
   }
 }
-export default Ingrediant;
+export default Ingredient;
