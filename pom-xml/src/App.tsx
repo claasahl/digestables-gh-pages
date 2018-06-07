@@ -58,7 +58,6 @@ class App extends React.Component<{}, IAppState> {
     this.state = {
       ingredients: []
     };
-    this.handleButton = this.handleButton.bind(this);
   }
 
   public render() {
@@ -85,18 +84,6 @@ class App extends React.Component<{}, IAppState> {
         {JSON.stringify(sample)}
       </div>
     );
-  }
-
-  private handleButton(event: React.MouseEvent<HTMLButtonElement>): void {
-    event.preventDefault();
-    const numIngredients = this.state.ingredients.length;
-    const ingredient = {
-      name: `name${numIngredients}`,
-      xml: "<data></data>"
-    };
-    this.setState(state => ({
-      ingredients: [...state.ingredients, ingredient]
-    }));
   }
 }
 
