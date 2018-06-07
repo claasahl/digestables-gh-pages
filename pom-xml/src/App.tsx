@@ -4,16 +4,13 @@ import "./App.css";
 
 // FIXME: changed from "export = deepmerge;" to "export default deepmerge;"
 import deepmerge from "deepmerge";
-import * as CopyToClipboard from "react-copy-to-clipboard";
 import { Builder, Parser } from "xml2js";
-import Ingredient from "./Ingredient";
 import RecipeComposer from "./RecipeComposer";
 import Sample1 from "./recipes/Sample1";
 import Sample2 from "./recipes/Sample2";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(fas);
 
@@ -81,62 +78,13 @@ class App extends React.Component<{}, IAppState> {
     const builder = new Builder();
     const sample5 = deepmerge(sample3, sample4);
     const sample = builder.buildObject(sample5);
-    const dataUrl = this.generateDataURL(sample);
 
     return (
       <div className="container grid-wrapper">
         <RecipeComposer />
-        <div id="recipe-composer">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Recipient's username"
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                onClick={this.handleButton}
-                type="button"
-              >
-                <FontAwesomeIcon icon="plus-square" />
-              </button>
-            </div>
-            <div className="input-group-append">
-              <a
-                className="btn btn-outline-secondary"
-                href={dataUrl}
-                download="pom.xml"
-              >
-                <FontAwesomeIcon icon="cloud-download-alt" />
-              </a>
-            </div>
-            <div className="input-group-append">
-              <CopyToClipboard text={sample}>
-                <button className="btn btn-outline-secondary" type="button">
-                  <FontAwesomeIcon icon="clipboard" />
-                </button>
-              </CopyToClipboard>
-            </div>
-          </div>
-        </div>
-        <div id="recipes">
-          {this.state.ingredients.map(({ name, xml }) => (
-            <div key="${name}" className="h1">
-              <Ingredient name={name} onRemove={this.removeIngredient} />
-            </div>
-          ))}
-        </div>
+        {JSON.stringify(sample)}
       </div>
     );
-  }
-
-  private generateDataURL(content: string): string {
-    return "data:text/plain;charset=utf-8," + encodeURIComponent(content);
-  }
-
-  private removeIngredient(name: string) {
-    // do something
   }
 
   private handleButton(event: React.MouseEvent<HTMLButtonElement>): void {
