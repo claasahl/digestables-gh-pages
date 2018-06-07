@@ -43,23 +43,7 @@ function fixArrays(pomXml: any) {
   return clonedPomXml;
 }
 
-interface IIngredient {
-  name: string;
-  xml: string;
-}
-
-interface IAppState {
-  ingredients: IIngredient[];
-}
-
-class App extends React.Component<{}, IAppState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      ingredients: []
-    };
-  }
-
+class App extends React.Component {
   public render() {
     let sample3;
     const options = { explicitArray: false };
