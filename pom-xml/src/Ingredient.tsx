@@ -9,10 +9,13 @@ interface IngredientProps {
 
 class Ingredient extends React.Component<IngredientProps> {
   public render() {
+    const onRemove = () => this.props.onRemove(this.props.name);
     return (
       <span className="badge badge-light">
         ${this.props.name}
-        <FontAwesomeIcon icon="window-close" transform="shrink-5" />
+        <div onClick={onRemove}>
+          <FontAwesomeIcon icon="window-close" transform="shrink-5" />
+        </div>
       </span>
     );
   }
