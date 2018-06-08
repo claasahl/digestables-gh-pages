@@ -5,6 +5,7 @@ import "./App.css";
 // FIXME: changed from "export = deepmerge;" to "export default deepmerge;"
 import deepmerge from "deepmerge";
 import { Builder, Parser } from "xml2js";
+import DownshiftSample from "./DownshiftSample";
 import RecipeComposer from "./RecipeComposer";
 import Sample1 from "./recipes/Sample1";
 import Sample2 from "./recipes/Sample2";
@@ -64,6 +65,7 @@ class App extends React.Component {
 
     return (
       <div className="container grid-wrapper">
+        <DownshiftSample />
         <RecipeComposer />
         {JSON.stringify(sample)}
       </div>
