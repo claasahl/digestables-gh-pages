@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as CopyToClipboard from "react-copy-to-clipboard";
 import Ingredient from "./Ingredient";
 
+import Sample from "./recipes/sample-recipe.xml";
+
 interface IIngredient {
   name: string;
   xml: string;
@@ -82,6 +84,12 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     );
   }
 
+  private async fetchAndAppendIngredient() {
+    const response = await fetch(Sample);
+    const xml = await response.text();
+    this.add({ name: `name${this.state.ingredients.size}`, xml });
+  }
+
   private generateDataURL(content: string): string {
     return "data:text/plain;charset=utf-8," + encodeURIComponent(content);
   }
@@ -89,6 +97,8 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   private handleSampleAdd(event: React.MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
     this.add({ name: "test", xml: "<data></data>" });
+
+    this.fetchAndAppendIngredient();
   }
 
   private handleSampleRemove(event: React.MouseEvent<HTMLButtonElement>): void {
