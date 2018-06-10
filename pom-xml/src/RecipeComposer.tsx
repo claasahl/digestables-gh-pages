@@ -24,7 +24,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
       ingredients: Map<string, IIngredient>()
     };
     this.handleSampleAdd = this.handleSampleAdd.bind(this);
-    this.handleSampleRemove = this.handleSampleRemove.bind(this);
     this.remove = this.remove.bind(this);
   }
   public render() {
@@ -99,11 +98,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     this.add({ name: "test", xml: "<data></data>" });
 
     this.fetchAndAppendIngredient();
-  }
-
-  private handleSampleRemove(event: React.MouseEvent<HTMLButtonElement>): void {
-    event.preventDefault();
-    this.remove("test");
   }
 
   private add(ingredient: IIngredient): void {
