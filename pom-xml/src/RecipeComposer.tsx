@@ -37,7 +37,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
             <input
               type="text"
               className="form-control"
-              placeholder="Recipient's username"
+              placeholder="Enter Ingredients ..."
             />
             <div className="input-group-append">
               <button
