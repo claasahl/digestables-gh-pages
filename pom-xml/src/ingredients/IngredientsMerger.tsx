@@ -4,6 +4,8 @@ import { Builder, Parser } from "xml2js";
 import Sample1 from "./../recipes/Sample1";
 import Sample2 from "./../recipes/Sample2";
 
+const options = { explicitArray: false };
+
 function fixArrays(pomXml: any) {
   const clonedPomXml = Object.assign(pomXml);
   if (
@@ -33,23 +35,29 @@ function fixArrays(pomXml: any) {
   return clonedPomXml;
 }
 
-export function merger() {
-  let sample3;
-  const options = { explicitArray: false };
-  const parser = new Parser(options);
-  parser.parseString(Sample1, (err: any, result: any) => {
-    sample3 = fixArrays(result);
+function parseAsync(xml: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const parser = new Parser(options);
+    parser.parseString(xml, (err: any, result: any) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(fixArrays(result));
+    });
   });
-
-  let sample4;
-  parser.reset();
-  parser.parseString(Sample2, (err: any, result: any) => {
-    sample4 = fixArrays(result);
-  });
-
-  const builder = new Builder();
-  const sample5 = deepmerge(sample3, sample4);
-  return builder.buildObject(sample5);
 }
 
-export default merger;
+export async function mergeAsync() {
+  const sample1 = await parseAsync(Sample1);
+  const sample2 = await parseAsync(Sample2);
+
+  const builder = new Builder();
+  const merged = deepmerge(sample1, sample2);
+  return builder.buildObject(merged);
+}
+
+export async function merger22() {
+  return await parseAsync(Sample1);
+}
+
+export default mergeAsync;
