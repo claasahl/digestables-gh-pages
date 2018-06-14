@@ -3,8 +3,10 @@ import * as React from "react";
 import "./App.css";
 
 import DownshiftSample from "./DownshiftSample";
-import { mergeAsync } from "./ingredients/IngredientsMerger";
+import { mergeIngredients } from "./ingredients/IngredientsMerger";
 import RecipeComposer from "./RecipeComposer";
+
+import { ingredients } from "./ingredients/Ingredients";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +22,7 @@ class App extends React.Component<any, any> {
   }
 
   public componentWillMount() {
-    const sample = mergeAsync();
+    const sample = mergeIngredients([ingredients[0]]);
     sample.then(result => {
       this.setState((state: any) => ({
         sample: result

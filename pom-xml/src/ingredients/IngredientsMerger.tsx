@@ -4,6 +4,8 @@ import { Builder, Parser } from "xml2js";
 import Sample1 from "./../recipes/Sample1";
 import Sample2 from "./../recipes/Sample2";
 
+import { Ingredient } from "./Ingredients";
+
 const options = { explicitArray: false };
 
 function fixArrays(pomXml: any) {
@@ -56,8 +58,19 @@ export async function mergeAsync() {
   return builder.buildObject(merged);
 }
 
-export async function merger22() {
-  return await parseAsync(Sample1);
+export async function mergeIngredients(
+  ingredients: Ingredient[]
+): Promise<string> {
+  if (!ingredients || ingredients.length === 0) {
+    return "";
+  }
+  let merged = await parseAsync(await ingredients[0].xml());
+  for (let a = 1; a < ingredients.length; a++) {
+    const xml = await parseAsync(await ingredients[a].xml());
+    merged = deepmerge(merged, xml);
+  }
+  const builder = new Builder();
+  return builder.buildObject(merged);
 }
 
 export default mergeAsync;
