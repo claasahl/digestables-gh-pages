@@ -1,16 +1,7 @@
 import Downshift from "downshift";
 import * as React from "react";
 
-interface IFruit {
-  value: string;
-}
-const items = [
-  { value: "apple" },
-  { value: "pear" },
-  { value: "orange" },
-  { value: "grape" },
-  { value: "banana" }
-];
+import { Ingredient, ingredients } from "./ingredients/Ingredients";
 
 class DownshiftSample extends React.Component {
   public render() {
@@ -26,20 +17,18 @@ class DownshiftSample extends React.Component {
           selectedItem
         }) => (
           <div>
-            <label {...getLabelProps()}>Enter a fruit</label>
+            <label {...getLabelProps()}>Enter an ingredient</label>
             <input {...getInputProps()} />
             {isOpen ? (
               <div>
-                {items
-                  .filter(
-                    item => !inputValue || item.value.includes(inputValue)
-                  )
+                {ingredients
+                  .filter(item => !inputValue || item.name.includes(inputValue))
                   .map((item, index) => (
                     <div
                       {...getItemProps({
                         index,
                         item,
-                        key: item.value,
+                        key: item.name,
                         style: {
                           backgroundColor:
                             highlightedIndex === index ? "lightgray" : "white",
@@ -47,7 +36,7 @@ class DownshiftSample extends React.Component {
                         }
                       })}
                     >
-                      {item.value}
+                      {item.name}
                     </div>
                   ))}
               </div>
@@ -58,12 +47,12 @@ class DownshiftSample extends React.Component {
     );
   }
 
-  private onChange(selection: IFruit) {
-    alert(`You selected ${selection.value}`);
+  private onChange(selection: Ingredient) {
+    alert(`You selected ${selection.name}`);
   }
 
-  private itemToString(selection: IFruit): string {
-    return selection ? selection.value : "";
+  private itemToString(selection: Ingredient): string {
+    return selection ? selection.name : "";
   }
 }
 
