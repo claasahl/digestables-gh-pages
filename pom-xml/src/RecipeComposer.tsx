@@ -25,6 +25,10 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     this.remove = this.remove.bind(this);
   }
 
+  public componentDidUpdate() {
+    this.fetchRecipe();
+  }
+
   public render() {
     return (
       <div>
@@ -79,6 +83,9 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   private fetchRecipe() {
     const selectedIngredients = this.state.ingredients.toArray();
     mergeIngredients(selectedIngredients).then(content => {
+      if (this.state.recipe === content) {
+        return;
+      }
       this.setState(state => ({
         ...state,
         recipe: content
@@ -104,7 +111,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
         ingredient
       )
     }));
-    this.fetchRecipe();
   }
 
   private remove(name: string): void {
@@ -112,7 +118,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
       ...state,
       ingredients: Map<string, Ingredient>(state.ingredients).delete(name)
     }));
-    this.fetchRecipe();
   }
 }
 

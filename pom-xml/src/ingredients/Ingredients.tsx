@@ -6,6 +6,33 @@ async function fetchXML(url: string): Promise<string> {
   return await response.text();
 }
 
+export class CachedIngredient implements Ingredient {
+  public name: string;
+  public url: string;
+  private xmlFetched: boolean;
+  private xmlData: string;
+
+  constructor(name: string, url: string) {
+    this.name = name;
+    this.url = url;
+    this.xmlFetched = false;
+    this.xmlData = "test";
+    this.xml = this.xml.bind(this);
+  }
+
+  public xml(): Promise<string> {
+    if (this.xmlFetched) {
+      return new Promise((resolve, reject) => resolve(this.xmlData));
+    }
+    const fetcher = fetchXML(this.url);
+    fetcher.then(value => {
+      this.xmlData = value;
+      this.xmlFetched = true;
+    });
+    return fetcher;
+  }
+}
+
 export interface Ingredient {
   name: string;
   url: string;
@@ -13,7 +40,7 @@ export interface Ingredient {
 }
 
 export const ingredients: Ingredient[] = [
-  { name: "sample1", url: Sample1, xml: () => fetchXML(Sample1) },
-  { name: "sample2", url: Sample2, xml: () => fetchXML(Sample2) }
+  new CachedIngredient("sample1", Sample1),
+  new CachedIngredient("sample2", Sample2)
 ];
 export default ingredients;
