@@ -7,7 +7,7 @@ interface IngredientProps {
   onRemove: (name: string) => void;
 }
 
-class Ingredient extends React.Component<IngredientProps> {
+export class Ingredient extends React.Component<IngredientProps> {
   public render() {
     const onRemove = () => this.props.onRemove(this.props.name);
     return (
