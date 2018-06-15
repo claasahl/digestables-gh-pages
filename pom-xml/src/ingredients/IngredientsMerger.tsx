@@ -1,9 +1,6 @@
 // FIXME: changed from "export = deepmerge;" to "export default deepmerge;"
 import deepmerge from "deepmerge";
 import { Builder, Parser } from "xml2js";
-import Sample1 from "./../recipes/Sample1";
-import Sample2 from "./../recipes/Sample2";
-
 import { Ingredient } from "./Ingredients";
 
 const options = { explicitArray: false };
@@ -49,15 +46,6 @@ function parseAsync(xml: string): Promise<any> {
   });
 }
 
-export async function mergeAsync() {
-  const sample1 = await parseAsync(Sample1);
-  const sample2 = await parseAsync(Sample2);
-
-  const builder = new Builder();
-  const merged = deepmerge(sample1, sample2);
-  return builder.buildObject(merged);
-}
-
 export async function mergeIngredients(
   ingredients: Ingredient[]
 ): Promise<string> {
@@ -72,5 +60,3 @@ export async function mergeIngredients(
   const builder = new Builder();
   return builder.buildObject(merged);
 }
-
-export default mergeAsync;
