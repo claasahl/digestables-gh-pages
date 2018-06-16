@@ -7,7 +7,7 @@ import * as CopyToClipboard from "react-copy-to-clipboard";
 import * as IngredientComponent from "./Ingredient";
 
 import { Ingredient, ingredients } from "./ingredients/Ingredients";
-import { mergeIngredients } from "./ingredients/IngredientsMerger";
+import { mergeAsync } from "./ingredients/IngredientsMerger";
 
 interface IRecipeComposerState {
   ingredients: Map<string, Ingredient>;
@@ -82,7 +82,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
 
   private fetchRecipe() {
     const selectedIngredients = this.state.ingredients.toArray();
-    mergeIngredients(selectedIngredients).then(content => {
+    mergeAsync(selectedIngredients).then(content => {
       if (this.state.recipe === content) {
         return;
       }

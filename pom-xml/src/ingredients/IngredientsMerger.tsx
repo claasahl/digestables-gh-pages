@@ -46,9 +46,7 @@ function parseAsync(xml: string): Promise<any> {
   });
 }
 
-export async function mergeIngredients(
-  ingredients: Ingredient[]
-): Promise<string> {
+export async function mergeAsync(ingredients: Ingredient[]): Promise<string> {
   if (!ingredients || ingredients.length === 0) {
     return "";
   }
@@ -60,3 +58,5 @@ export async function mergeIngredients(
   const builder = new Builder();
   return builder.buildObject(merged);
 }
+
+export default mergeAsync;
