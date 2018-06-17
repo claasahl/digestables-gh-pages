@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as CopyToClipboard from "react-copy-to-clipboard";
 import * as IngredientComponent from "./Ingredient";
 
+import Downshift from "downshift";
 import { Ingredient, ingredients } from "./ingredients/Ingredients";
 import { mergeAsync } from "./ingredients/IngredientsMerger";
 
@@ -31,53 +32,98 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
 
   public render() {
     return (
-      <div>
-        <div id="recipe-composer">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter Ingredients ..."
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                onClick={this.handleSampleAdd}
-                type="button"
-              >
-                <FontAwesomeIcon icon="plus-square" />
-              </button>
+      <Downshift onChange={this.onChange} itemToString={this.itemToString}>
+        {({
+          getInputProps,
+          getItemProps,
+          getLabelProps,
+          isOpen,
+          inputValue,
+          highlightedIndex,
+          selectedItem
+        }) => (
+          <div>
+            <div id="recipe-composer">
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Ingredients ..."
+                />
+                <div className="input-group-append">
+                  <button
+                    className="btn btn-outline-secondary"
+                    onClick={this.handleSampleAdd}
+                    type="button"
+                  >
+                    <FontAwesomeIcon icon="plus-square" />
+                  </button>
+                </div>
+                <div className="input-group-append">
+                  <a
+                    className="btn btn-outline-secondary"
+                    href={this.generateDataURL(this.state.recipe)}
+                    download="pom.xml"
+                  >
+                    <FontAwesomeIcon icon="cloud-download-alt" />
+                  </a>
+                </div>
+                <div className="input-group-append">
+                  <CopyToClipboard text={this.state.recipe}>
+                    <button className="btn btn-outline-secondary" type="button">
+                      <FontAwesomeIcon icon="clipboard" />
+                    </button>
+                  </CopyToClipboard>
+                </div>
+              </div>
             </div>
-            <div className="input-group-append">
-              <a
-                className="btn btn-outline-secondary"
-                href={this.generateDataURL(this.state.recipe)}
-                download="pom.xml"
-              >
-                <FontAwesomeIcon icon="cloud-download-alt" />
-              </a>
+            <div id="ingredients">
+              {this.state.ingredients.toArray().map(({ name }) => (
+                <div key={name}>
+                  <IngredientComponent.Ingredient
+                    name={name}
+                    onRemove={this.remove}
+                  />
+                </div>
+              ))}
             </div>
-            <div className="input-group-append">
-              <CopyToClipboard text={this.state.recipe}>
-                <button className="btn btn-outline-secondary" type="button">
-                  <FontAwesomeIcon icon="clipboard" />
-                </button>
-              </CopyToClipboard>
-            </div>
+
+            <label {...getLabelProps()}>Enter an ingredient</label>
+            <input {...getInputProps()} />
+            {isOpen ? (
+              <div>
+                {ingredients
+                  .filter(item => !inputValue || item.name.includes(inputValue))
+                  .map((item, index) => (
+                    <div
+                      {...getItemProps({
+                        index,
+                        item,
+                        key: item.name,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? "lightgray" : "white",
+                          fontWeight: selectedItem === item ? "bold" : "normal"
+                        }
+                      })}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+              </div>
+            ) : null}
           </div>
-        </div>
-        <div id="ingredients">
-          {this.state.ingredients.toArray().map(({ name }) => (
-            <div key={name}>
-              <IngredientComponent.Ingredient
-                name={name}
-                onRemove={this.remove}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+        )}
+      </Downshift>
     );
+  }
+
+  private onChange(selection: Ingredient) {
+    alert(`You selected ${selection.name}`);
+  }
+
+  private itemToString(selection: Ingredient): string {
+    return selection ? selection.name : "";
   }
 
   private fetchRecipe() {

@@ -2,7 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from "react";
 import "./App.css";
 
-import DownshiftSample from "./DownshiftSample";
 import RecipeComposer from "./RecipeComposer";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,7 +13,6 @@ class App extends React.Component {
   public render() {
     return (
       <div className="container grid-wrapper">
-        <DownshiftSample />
         <RecipeComposer />
       </div>
     );
