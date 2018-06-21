@@ -39,8 +39,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
           getItemProps,
           isOpen,
           inputValue,
-          highlightedIndex,
-          selectedItem
+          highlightedIndex
         }) => (
           <div>
             <div id="recipe-composer">
@@ -92,7 +91,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
                         style: {
                           backgroundColor:
                             highlightedIndex === index ? "lightgray" : "white",
-                          fontWeight: selectedItem === item ? "bold" : "normal"
+                          fontWeight: "normal"
                         }
                       })}
                     >
