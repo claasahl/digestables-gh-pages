@@ -22,6 +22,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
       ingredients: Map<string, Ingredient>(),
       recipe: ""
     };
+    this.onChange = this.onChange.bind(this);
     this.handleSampleAdd = this.handleSampleAdd.bind(this);
     this.remove = this.remove.bind(this);
   }
@@ -36,7 +37,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
         {({
           getInputProps,
           getItemProps,
-          getLabelProps,
           isOpen,
           inputValue,
           highlightedIndex,
@@ -46,6 +46,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
             <div id="recipe-composer">
               <div className="input-group mb-3">
                 <input
+                  {...getInputProps()}
                   type="text"
                   className="form-control"
                   placeholder="Enter Ingredients ..."
@@ -77,23 +78,11 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
                 </div>
               </div>
             </div>
-            <div id="ingredients">
-              {this.state.ingredients.toArray().map(({ name }) => (
-                <div key={name}>
-                  <IngredientComponent.Ingredient
-                    name={name}
-                    onRemove={this.remove}
-                  />
-                </div>
-              ))}
-            </div>
-
-            <label {...getLabelProps()}>Enter an ingredient</label>
-            <input {...getInputProps()} />
             {isOpen ? (
-              <div>
+              <div id="matchingIngredients">
                 {ingredients
                   .filter(item => !inputValue || item.name.includes(inputValue))
+                  .filter(item => !this.state.ingredients.has(item.name))
                   .map((item, index) => (
                     <div
                       {...getItemProps({
@@ -112,6 +101,16 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
                   ))}
               </div>
             ) : null}
+            <div id="ingredients">
+              {this.state.ingredients.toArray().map(({ name }) => (
+                <div key={name}>
+                  <IngredientComponent.Ingredient
+                    name={name}
+                    onRemove={this.remove}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </Downshift>
@@ -119,7 +118,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   }
 
   private onChange(selection: Ingredient) {
-    alert(`You selected ${selection.name}`);
+    this.add(selection);
   }
 
   private itemToString(selection: Ingredient): string {
