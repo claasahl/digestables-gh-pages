@@ -22,8 +22,8 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
       ingredients: Map<string, Ingredient>(),
       recipe: ""
     };
-    this.onChange = this.onChange.bind(this);
     this.handleSampleAdd = this.handleSampleAdd.bind(this);
+    this.add = this.add.bind(this);
     this.remove = this.remove.bind(this);
   }
 
@@ -33,7 +33,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
 
   public render() {
     return (
-      <Downshift onChange={this.onChange} itemToString={this.itemToString}>
+      <Downshift onSelect={this.add} itemToString={this.itemToString}>
         {({
           getInputProps,
           getItemProps,
@@ -115,10 +115,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
         )}
       </Downshift>
     );
-  }
-
-  private onChange(selection: Ingredient) {
-    this.add(selection);
   }
 
   private itemToString(selection: Ingredient): string {
