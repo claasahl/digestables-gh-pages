@@ -5,6 +5,7 @@ import "./RecipeComposer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as CopyToClipboard from "react-copy-to-clipboard";
 import * as IngredientComponent from "./Ingredient";
+import RecipeDownload from "./RecipeDownload";
 
 import Downshift from "downshift";
 import { Ingredient, ingredients } from "./ingredients/Ingredients";
@@ -43,7 +44,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
         }) => (
           <div>
             <div id="recipe-composer">
-              <div className="input-group mb-3">
+              <div className="input-group">
                 <input
                   {...getInputProps()}
                   type="text"
@@ -60,13 +61,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
                   </button>
                 </div>
                 <div className="input-group-append">
-                  <a
-                    className="btn btn-outline-secondary"
-                    href={this.generateDataURL(this.state.recipe)}
-                    download="pom.xml"
-                  >
-                    <FontAwesomeIcon icon="cloud-download-alt" />
-                  </a>
+                  <RecipeDownload recipe={this.state.recipe} />
                 </div>
                 <div className="input-group-append">
                   <CopyToClipboard text={this.state.recipe}>
@@ -131,10 +126,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
         recipe: content
       }));
     });
-  }
-
-  private generateDataURL(content: string): string {
-    return "data:text/plain;charset=utf-8," + encodeURIComponent(content);
   }
 
   private handleSampleAdd(event: React.MouseEvent<HTMLButtonElement>): void {
