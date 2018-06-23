@@ -14,6 +14,7 @@ import { mergeAsync } from "./ingredients/IngredientsMerger";
 interface IRecipeComposerState {
   ingredients: Map<string, Ingredient>;
   recipe: string;
+  updateRecipe: boolean;
 }
 
 class RecipeComposer extends React.Component<any, IRecipeComposerState> {
@@ -21,7 +22,8 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     super(props);
     this.state = {
       ingredients: Map<string, Ingredient>(),
-      recipe: ""
+      recipe: "",
+      updateRecipe: false
     };
     this.handleSampleAdd = this.handleSampleAdd.bind(this);
     this.add = this.add.bind(this);
@@ -33,6 +35,8 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   }
 
   public render() {
+    const disabled =
+      this.state.updateRecipe || this.state.ingredients.isEmpty();
     return (
       <Downshift onSelect={this.add} itemToString={this.itemToString}>
         {({
@@ -61,10 +65,16 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
                   </button>
                 </div>
                 <div className="input-group-append">
-                  <RecipeDownload recipe={this.state.recipe} />
+                  <RecipeDownload
+                    recipe={this.state.recipe}
+                    disabled={disabled}
+                  />
                 </div>
                 <div className="input-group-append">
-                  <RecipeCopyToClipboard recipe={this.state.recipe} />
+                  <RecipeCopyToClipboard
+                    recipe={this.state.recipe}
+                    disabled={disabled}
+                  />
                 </div>
               </div>
             </div>
@@ -112,15 +122,23 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   }
 
   private fetchRecipe() {
+    if (!this.state.updateRecipe) {
+      return;
+    }
     const selectedIngredients = this.state.ingredients.toArray();
     mergeAsync(selectedIngredients).then(content => {
       if (this.state.recipe === content) {
-        return;
+        this.setState(state => ({
+          ...state,
+          updateRecipe: false
+        }));
+      } else {
+        this.setState(state => ({
+          ...state,
+          recipe: content,
+          updateRecipe: false
+        }));
       }
-      this.setState(state => ({
-        ...state,
-        recipe: content
-      }));
     });
   }
 
@@ -136,14 +154,16 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
       ingredients: Map<string, Ingredient>(state.ingredients).set(
         ingredient.name,
         ingredient
-      )
+      ),
+      updateRecipe: true
     }));
   }
 
   private remove(name: string): void {
     this.setState(state => ({
       ...state,
-      ingredients: Map<string, Ingredient>(state.ingredients).delete(name)
+      ingredients: Map<string, Ingredient>(state.ingredients).delete(name),
+      updateRecipe: true
     }));
   }
 }

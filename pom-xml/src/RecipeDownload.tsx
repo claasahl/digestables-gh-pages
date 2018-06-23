@@ -3,13 +3,18 @@ import * as React from "react";
 
 interface IProps {
   recipe: string;
+  disabled: boolean;
 }
 
 class RecipeDownload extends React.Component<IProps> {
   public render() {
     return (
       <a
-        className="btn btn-outline-secondary"
+        className={
+          "btn btn-outline-secondary" + (this.props.disabled ? " disabled" : "")
+        }
+        tabIndex={this.props.disabled ? -1 : undefined}
+        role="button"
         href={this.generateDataURL()}
         download="pom.xml"
       >
