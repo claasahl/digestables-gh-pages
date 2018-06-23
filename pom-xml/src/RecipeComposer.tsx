@@ -3,8 +3,8 @@ import * as React from "react";
 import "./RecipeComposer.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as CopyToClipboard from "react-copy-to-clipboard";
 import * as IngredientComponent from "./Ingredient";
+import RecipeCopyToClipboard from "./RecipeCopyToClipboard";
 import RecipeDownload from "./RecipeDownload";
 
 import Downshift from "downshift";
@@ -64,11 +64,7 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
                   <RecipeDownload recipe={this.state.recipe} />
                 </div>
                 <div className="input-group-append">
-                  <CopyToClipboard text={this.state.recipe}>
-                    <button className="btn btn-outline-secondary" type="button">
-                      <FontAwesomeIcon icon="clipboard" />
-                    </button>
-                  </CopyToClipboard>
+                  <RecipeCopyToClipboard recipe={this.state.recipe} />
                 </div>
               </div>
             </div>
