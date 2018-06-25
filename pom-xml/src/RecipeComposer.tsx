@@ -31,7 +31,9 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   }
 
   public componentDidUpdate() {
-    this.fetchRecipe();
+    if (this.state.updateRecipe) {
+      this.fetchRecipe();
+    }
   }
 
   public render() {
@@ -122,9 +124,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
   }
 
   private fetchRecipe() {
-    if (!this.state.updateRecipe) {
-      return;
-    }
     const selectedIngredients = this.state.ingredients.toArray();
     mergeAsync(selectedIngredients).then(content => {
       if (this.state.recipe === content) {
