@@ -10,6 +10,8 @@
     "deepmerge": "^2.1.1",
     "downshift": "^1.31.15",
     "immutable": "^3.8.2",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
     "react": "^16.4.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.4.0",
