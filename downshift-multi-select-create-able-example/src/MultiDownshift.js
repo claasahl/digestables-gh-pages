@@ -1,6 +1,5 @@
 import React from "react";
 import { Div } from "glamorous";
-import { css } from "glamor";
 import Downshift from "downshift";
 import AutosizeInput from "react-input-autosize";
 import {
@@ -12,14 +11,7 @@ import {
   InputValueWrapper
 } from "./components";
 import TagValue from "./TagValue";
-
-const inputBoxCss = css({
-  border: "none",
-  outline: "none",
-  cursor: "inherit",
-  backgroundColor: "transparent",
-  fontSize: "14px"
-});
+import "./MultiDownshift.css";
 
 class MultiDownshift extends React.Component {
   state = { inputValue: "" };
@@ -142,7 +134,7 @@ class MultiDownshift extends React.Component {
           const _inputProps = getInputProps({
             value: this.state.inputValue,
             ref: this.inputRef,
-            inputClassName: inputBoxCss.toString(),
+            inputClassName: "inputBoxCss",
             onChange: this.onInputChange,
             onKeyDown: this.onInputKeyDown
           });
@@ -152,7 +144,7 @@ class MultiDownshift extends React.Component {
           });
 
           return (
-            <div className={css({ width: 300, margin: "auto" })}>
+            <div className="anotherClassName">
               <Label {...getLabelProps()}>
                 Find or create a Star Wars character
               </Label>

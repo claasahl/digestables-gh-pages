@@ -1,0 +1,12 @@
+.inputBoxCss {
+  border: none;
+  outline: none;
+  cursor: inherit;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.anotherClassName {
+  width: 300px;
+  margin: auto;
+}
