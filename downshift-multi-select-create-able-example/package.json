@@ -1,0 +1,24 @@
+{
+  "name": "downshift-multi-select-create-able-example",
+  "description": "This example shows how to create a multi selectable and create-able tags similar to the behavior of Gmail email entries.\n\nYou can create new entries with \"comma\" and \"tab\".\nYou can remove entries with \"backspace\".\n\nYou can edit tags by double clicking on them",
+  "version": "0.0.100",
+  "dependencies": {
+    "starwars-names": "1.6.0",
+    "react-input-autosize": "2.0.1",
+    "react-dom": "15.6.1",
+    "react": "15.6.1",
+    "match-sorter": "1.8.1",
+    "glamorous": "4.6.0",
+    "glamor": "2.20.40",
+    "downshift": "1.6.0"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
