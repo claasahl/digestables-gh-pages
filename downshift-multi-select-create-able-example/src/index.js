@@ -1,19 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { render } from "react-dom";
-import glamorous, { Div } from "glamorous";
-import { css } from "glamor";
+import { Div } from "glamorous";
 import matchSorter from "match-sorter";
 import starWarsNames from "starwars-names";
-import Downshift from "downshift";
-import {
-  Label,
-  Menu,
-  ControllerButton,
-  Input,
-  Item,
-  ArrowIcon,
-  XIcon
-} from "./components";
 import MultiDownshift from "./MultiDownshift";
 
 class App extends React.Component {

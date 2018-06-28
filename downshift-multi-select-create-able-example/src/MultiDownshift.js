@@ -1,19 +1,14 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import glamorous, { Div } from "glamorous";
+import React from "react";
+import { Div } from "glamorous";
 import { css } from "glamor";
-import matchSorter from "match-sorter";
-import starWarsNames from "starwars-names";
 import Downshift from "downshift";
 import AutosizeInput from "react-input-autosize";
 import {
   Label,
   Menu,
   ControllerButton,
-  Input,
   Item,
   ArrowIcon,
-  XIcon,
   InputValueWrapper
 } from "./components";
 import TagValue from "./TagValue";
