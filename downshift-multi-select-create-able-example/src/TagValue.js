@@ -1,19 +1,7 @@
 import React from "react";
 import AutosizeInput from "react-input-autosize";
-import glamorous, { Div } from "glamorous";
-import { css } from "glamor";
 
-const XButton = glamorous.span({
-  cursor: "pointer"
-});
-
-const inputBoxCss = css({
-  border: "none",
-  outline: "none",
-  cursor: "inherit",
-  backgroundColor: "transparent",
-  fontSize: "14px"
-});
+import "./MultiDownshift.css";
 
 class TagValue extends React.Component {
   constructor(props) {
@@ -67,7 +55,7 @@ class TagValue extends React.Component {
       type: "text",
       value,
       ref: this.inputRef,
-      inputClassName: inputBoxCss.toString(),
+      inputClassName: "inputBoxCss",
       onChange: this.onChange,
       onBlur: this.onBlur
     };
@@ -75,13 +63,12 @@ class TagValue extends React.Component {
     return editing ? (
       <AutosizeInput {...inputProps} />
     ) : (
-      <Div
-        marginRight={4}
-        backgroundColor="#ccc"
-        onDoubleClick={this.onDoubleClick}
-      >
-        {value} <XButton onClick={this.onRemove}>x</XButton>
-      </Div>
+      <div className="mmmmm" onDoubleClick={this.onDoubleClick}>
+        {value}{" "}
+        <span className="hhhhhhhhhhhhhhhhh" onClick={this.onRemove}>
+          x
+        </span>
+      </div>
     );
   }
 }
