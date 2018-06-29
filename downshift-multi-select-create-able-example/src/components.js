@@ -37,40 +37,6 @@ const Item = glamorous.div(
     return styles;
   }
 );
-const onAttention = "&:hover, &:focus";
-const Input = glamorous.input(
-  {
-    width: "100%", // full width - icon width/2 - border
-    fontSize: 14,
-    wordWrap: "break-word",
-    lineHeight: "1em",
-    outline: 0,
-    whiteSpace: "normal",
-    minHeight: "2em",
-    background: "#fff",
-    display: "inline-block",
-    padding: "1em 2em 1em 1em",
-    color: "rgba(0,0,0,.87)",
-    boxShadow: "none",
-    border: "1px solid rgba(34,36,38,.15)",
-    borderRadius: ".30rem",
-    transition: "box-shadow .1s ease,width .1s ease",
-    [onAttention]: {
-      borderColor: "#96c8da",
-      boxShadow: "0 2px 3px 0 rgba(34,36,38,.15)"
-    }
-  },
-  ({ isOpen }) =>
-    isOpen
-      ? {
-          borderBottomLeftRadius: "0",
-          borderBottomRightRadius: "0",
-          [onAttention]: {
-            boxShadow: "none"
-          }
-        }
-      : null
-);
 
 const Label = glamorous.label({
   fontWeight: "bold",
@@ -136,29 +102,4 @@ function ArrowIcon({ isOpen }) {
   );
 }
 
-function XIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      preserveAspectRatio="none"
-      width={12}
-      fill="transparent"
-      stroke="#979797"
-      strokeWidth="1.1px"
-    >
-      <path d="M1,1 L19,19" />
-      <path d="M19,1 L1,19" />
-    </svg>
-  );
-}
-
-export {
-  Menu,
-  ControllerButton,
-  Input,
-  Item,
-  ArrowIcon,
-  XIcon,
-  Label,
-  InputValueWrapper
-};
+export { Menu, ControllerButton, Item, ArrowIcon, Label, InputValueWrapper };
