@@ -2,7 +2,6 @@ import React from "react";
 import Downshift from "downshift";
 import AutosizeInput from "react-input-autosize";
 import {
-  Label,
   Menu,
   ControllerButton,
   Item,
@@ -144,9 +143,6 @@ class MultiDownshift extends React.Component {
 
           return (
             <div className="anotherClassName">
-              <Label {...getLabelProps()}>
-                Find or create a Star Wars character
-              </Label>
               <div className="someClaaaaasName">
                 <InputValueWrapper
                   innerRef={this.inputWrapperRef}

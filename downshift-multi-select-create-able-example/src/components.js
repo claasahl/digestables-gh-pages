@@ -38,12 +38,6 @@ const Item = glamorous.div(
   }
 );
 
-const Label = glamorous.label({
-  fontWeight: "bold",
-  display: "block",
-  marginBottom: 10
-});
-
 const InputValueWrapper = glamorous.div({
   display: "flex",
   flexDirection: "row",
@@ -102,4 +96,4 @@ function ArrowIcon({ isOpen }) {
   );
 }
 
-export { Menu, ControllerButton, Item, ArrowIcon, Label, InputValueWrapper };
+export { Menu, ControllerButton, Item, ArrowIcon, InputValueWrapper };
