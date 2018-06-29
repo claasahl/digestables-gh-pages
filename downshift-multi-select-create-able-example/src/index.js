@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import { Div } from "glamorous";
 import matchSorter from "match-sorter";
 import starWarsNames from "starwars-names";
 import MultiDownshift from "./MultiDownshift";
+
+import "./index.css";
 
 class App extends React.Component {
   allItems = starWarsNames.all;
@@ -49,14 +50,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Div
-        css={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          textAlign: "center"
-        }}
-      >
+      <div className="yetAnotherClass">
         <h2>Multi select creatable example</h2>
         <MultiDownshift
           selectedItem={this.state.selectedItems}
@@ -67,7 +61,7 @@ class App extends React.Component {
           items={this.state.items}
           itemToString={this.itemToString}
         />
-      </Div>
+      </div>
     );
   }
 }

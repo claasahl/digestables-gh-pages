@@ -1,5 +1,4 @@
 import React from "react";
-import { Div } from "glamorous";
 import Downshift from "downshift";
 import AutosizeInput from "react-input-autosize";
 import {
@@ -148,7 +147,7 @@ class MultiDownshift extends React.Component {
               <Label {...getLabelProps()}>
                 Find or create a Star Wars character
               </Label>
-              <Div position="relative">
+              <div className="someClaaaaasName">
                 <InputValueWrapper
                   innerRef={this.inputWrapperRef}
                   onClick={this.onWrapperClick}
@@ -168,7 +167,7 @@ class MultiDownshift extends React.Component {
                 <ControllerButton {...getButtonProps()}>
                   <ArrowIcon isOpen={isOpen} />
                 </ControllerButton>
-              </Div>
+              </div>
               {!isOpen ? null : (
                 <Menu>
                   {items.map((item, index) => (
