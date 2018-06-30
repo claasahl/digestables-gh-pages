@@ -1,6 +1,8 @@
 import React from "react";
 import glamorous from "glamorous";
 
+import "./MultiDownshift.css";
+
 const Item = glamorous.div(
   {
     position: "relative",
@@ -65,21 +67,6 @@ const Menu = glamorous.div({
   borderStyle: "solid"
 });
 
-const ControllerButton = glamorous.button({
-  backgroundColor: "transparent",
-  border: "none",
-  position: "absolute",
-  right: 0,
-  top: 0,
-  cursor: "pointer",
-  width: 47,
-  display: "flex",
-  flexDirection: "column",
-  height: "100%",
-  justifyContent: "center",
-  alignItems: "center"
-});
-
 function ArrowIcon({ isOpen }) {
   return (
     <svg
@@ -96,4 +83,4 @@ function ArrowIcon({ isOpen }) {
   );
 }
 
-export { Menu, ControllerButton, Item, ArrowIcon, InputValueWrapper };
+export { Menu, Item, ArrowIcon, InputValueWrapper };

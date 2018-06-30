@@ -1,13 +1,7 @@
 import React from "react";
 import Downshift from "downshift";
 import AutosizeInput from "react-input-autosize";
-import {
-  Menu,
-  ControllerButton,
-  Item,
-  ArrowIcon,
-  InputValueWrapper
-} from "./components";
+import { Menu, Item, ArrowIcon, InputValueWrapper } from "./components";
 import TagValue from "./TagValue";
 import "./MultiDownshift.css";
 
@@ -160,9 +154,9 @@ class MultiDownshift extends React.Component {
                   <AutosizeInput {..._inputProps} />
                 </InputValueWrapper>
 
-                <ControllerButton {...getButtonProps()}>
+                <button className="controller-button" {...getButtonProps()}>
                   <ArrowIcon isOpen={isOpen} />
-                </ControllerButton>
+                </button>
               </div>
               {!isOpen ? null : (
                 <Menu>
