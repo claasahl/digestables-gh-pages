@@ -65,3 +65,32 @@
   border-left-width: 1px;
   border-style: solid;
 }
+
+.Item {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  border: none;
+  height: auto;
+  text-align: left;
+  border-top: none;
+  line-height: 1em;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 1rem;
+  text-transform: none;
+  font-weight: 400;
+  box-shadow: none;
+  padding: 0.8rem 1.1rem;
+  white-space: normal;
+  word-wrap: normal;
+}
+
+.Item-isActive {
+  color: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.Item-isSelected {
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 700;
+}

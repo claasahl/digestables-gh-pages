@@ -1,44 +1,21 @@
 import React from "react";
-import glamorous from "glamorous";
 
 import "./MultiDownshift.css";
 
-const Item = glamorous.div(
-  {
-    position: "relative",
-    cursor: "pointer",
-    display: "block",
-    border: "none",
-    height: "auto",
-    textAlign: "left",
-    borderTop: "none",
-    lineHeight: "1em",
-    color: "rgba(0,0,0,.87)",
-    fontSize: "1rem",
-    textTransform: "none",
-    fontWeight: "400",
-    boxShadow: "none",
-    padding: ".8rem 1.1rem",
-    whiteSpace: "normal",
-    wordWrap: "normal"
-  },
-  ({ isActive, isSelected }) => {
-    const styles = [];
-    if (isActive) {
-      styles.push({
-        color: "rgba(0,0,0,.95)",
-        background: "rgba(0,0,0,.03)"
-      });
-    }
-    if (isSelected) {
-      styles.push({
-        color: "rgba(0,0,0,.95)",
-        fontWeight: "700"
-      });
-    }
-    return styles;
+function Item(props) {
+  const classes = ["Item"];
+  if (props.isActive) {
+    classes.push("Item-isActive");
   }
-);
+  if (props.isSelected) {
+    classes.push("Item-isSelected");
+  }
+  return (
+    <div className={classes.join(" ")} {...props}>
+      {props.children}
+    </div>
+  );
+}
 
 function InputValueWrapper(props) {
   return (
