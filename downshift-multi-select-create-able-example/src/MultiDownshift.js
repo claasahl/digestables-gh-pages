@@ -1,7 +1,7 @@
 import React from "react";
 import Downshift from "downshift";
 import AutosizeInput from "react-input-autosize";
-import { Menu, Item, ArrowIcon, InputValueWrapper } from "./components";
+import { Item, ArrowIcon, InputValueWrapper } from "./components";
 import TagValue from "./TagValue";
 import "./MultiDownshift.css";
 
@@ -159,7 +159,7 @@ class MultiDownshift extends React.Component {
                 </button>
               </div>
               {!isOpen ? null : (
-                <Menu>
+                <div className="mmmmenu">
                   {items.map((item, index) => (
                     <Item
                       key={`item-${index}`}
@@ -173,7 +173,7 @@ class MultiDownshift extends React.Component {
                       {item}
                     </Item>
                   ))}
-                </Menu>
+                </div>
               )}
             </div>
           );

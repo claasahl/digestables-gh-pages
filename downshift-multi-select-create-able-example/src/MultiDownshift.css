@@ -38,3 +38,30 @@
   justify-content: center;
   align-items: center;
 }
+
+.InputValueWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1 1 auto;
+  padding: 4px;
+  border: 1px #c5c4c4 solid;
+  border-radius: 4px;
+}
+
+.mmmmenu {
+  max-height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-top-width: 0px;
+  outline: 0px;
+  border-radius: 0 0 0.28571429rem 0.28571429rem;
+  transition: opacity 0.1s ease;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  border-color: #96c8da;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-style: solid;
+}

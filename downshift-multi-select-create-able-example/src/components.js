@@ -40,32 +40,13 @@ const Item = glamorous.div(
   }
 );
 
-const InputValueWrapper = glamorous.div({
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  alignItems: "center",
-  flex: "1 1 auto",
-  padding: "4px",
-  border: "1px #c5c4c4 solid",
-  borderRadius: "4px"
-});
-
-const Menu = glamorous.div({
-  maxHeight: "20rem",
-  overflowY: "auto",
-  overflowX: "hidden",
-  borderTopWidth: "0",
-  outline: "0",
-  borderRadius: "0 0 .28571429rem .28571429rem",
-  transition: "opacity .1s ease",
-  boxShadow: "0 2px 3px 0 rgba(34,36,38,.15)",
-  borderColor: "#96c8da",
-  borderRightWidth: 1,
-  borderBottomWidth: 1,
-  borderLeftWidth: 1,
-  borderStyle: "solid"
-});
+function InputValueWrapper(props) {
+  return (
+    <div className="InputValueWrapper" ref={props.innerRef} {...props}>
+      {props.children}
+    </div>
+  );
+}
 
 function ArrowIcon({ isOpen }) {
   return (
@@ -83,4 +64,4 @@ function ArrowIcon({ isOpen }) {
   );
 }
 
-export { Menu, Item, ArrowIcon, InputValueWrapper };
+export { Item, ArrowIcon, InputValueWrapper };
