@@ -22,13 +22,6 @@ class MultiDownshift extends React.Component {
     this.setState({ inputValue: event.target.value });
   };
 
-  onTagBlur = (e, item) => {
-    const { onItemChanged } = this.props;
-    if (onItemChanged) {
-      onItemChanged(item);
-    }
-  };
-
   onRemoveTag = item => {
     this.props.onRemoveItem(item);
   };
@@ -142,7 +135,6 @@ class MultiDownshift extends React.Component {
                   {tagItems.map(tag => (
                     <TagValue
                       key={`Tag-${tag.index}`}
-                      onBlur={this.onTagBlur}
                       onRemove={this.onRemoveTag}
                       tag={tag}
                     />

@@ -23,14 +23,6 @@ class TagValue extends React.Component {
     this.setState({ editing: true });
   };
 
-  onBlur = e => {
-    const { onBlur, tag } = this.props;
-    this.setState({ editing: false });
-    if (onBlur) {
-      onBlur(e, { ...tag, value: this.state.value });
-    }
-  };
-
   onChange = e => {
     this.setState({ value: e.target.value });
   };
@@ -56,8 +48,7 @@ class TagValue extends React.Component {
       value,
       ref: this.inputRef,
       inputClassName: "inputBoxCss",
-      onChange: this.onChange,
-      onBlur: this.onBlur
+      onChange: this.onChange
     };
 
     return editing ? (
