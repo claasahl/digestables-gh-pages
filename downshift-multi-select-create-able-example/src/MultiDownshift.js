@@ -102,13 +102,10 @@ class MultiDownshift extends React.Component {
     return (
       <Downshift onStateChange={this.handleStateChange} {...rest}>
         {({
-          getLabelProps,
           getInputProps,
           getButtonProps,
           getItemProps,
           isOpen,
-          toggleMenu,
-          clearSelection,
           selectedItem,
           highlightedIndex
         }) => {

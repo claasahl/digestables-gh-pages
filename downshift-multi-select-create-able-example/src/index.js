@@ -9,7 +9,7 @@ import "./index.css";
 class App extends React.Component {
   allItems = starWarsNames.all;
   state = { items: this.allItems, selectedItems: [] };
-  handleStateChange = (changes, downshiftState) => {
+  handleStateChange = changes => {
     if (changes.hasOwnProperty("inputValue")) {
       this.setState({ items: this.getItems(changes.inputValue) });
     }
@@ -18,7 +18,7 @@ class App extends React.Component {
     // to controll some of the internal state yourself
   };
 
-  handleChange = (selectedItem, downshiftState) => {
+  handleChange = () => {
     this.setState({ items: this.allItems });
   };
 
