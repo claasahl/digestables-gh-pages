@@ -105,13 +105,9 @@ class MultiDownshift extends React.Component {
   };
 
   render() {
-    const { itemToString, items, ...rest } = this.props;
+    const { items, ...rest } = this.props;
     return (
-      <Downshift
-        onStateChange={this.handleStateChange}
-        itemToString={itemToString}
-        {...rest}
-      >
+      <Downshift onStateChange={this.handleStateChange} {...rest}>
         {({
           getLabelProps,
           getInputProps,
