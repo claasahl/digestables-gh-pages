@@ -1,16 +1,11 @@
 import * as React from "react";
 
 import Downshift from "downshift";
+import * as starwarsNames from "starwars-names";
 
 class MultiDownshift extends React.Component {
   public render() {
-    const items = [
-      { value: "apple" },
-      { value: "pear" },
-      { value: "orange" },
-      { value: "grape" },
-      { value: "banana" }
-    ];
+    const items = starwarsNames.all;
     return (
       <Downshift onChange={this.onChange} itemToString={this.itemToString}>
         {({
@@ -29,15 +24,13 @@ class MultiDownshift extends React.Component {
             <ul {...getMenuProps()}>
               {isOpen
                 ? items
-                    .filter(
-                      item => !inputValue || item.value.includes(inputValue)
-                    )
+                    .filter(item => !inputValue || item.includes(inputValue))
                     .map((item, index) => (
                       <li
                         {...getItemProps({
                           index,
                           item,
-                          key: item.value,
+                          key: item,
                           style: {
                             backgroundColor:
                               highlightedIndex === index
@@ -48,7 +41,7 @@ class MultiDownshift extends React.Component {
                           }
                         })}
                       >
-                        {item.value}
+                        {item}
                       </li>
                     ))
                 : null}
@@ -59,9 +52,8 @@ class MultiDownshift extends React.Component {
     );
   }
 
-  private onChange = (selection: any) =>
-    alert(`You selected ${selection.value}`);
-  private itemToString = (item: any) => (item ? item.value : "");
+  private onChange = (selection: any) => alert(`You selected ${selection}`);
+  private itemToString = (item: any) => (item ? item : "");
 }
 
 export default MultiDownshift;
