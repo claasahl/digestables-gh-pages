@@ -7,7 +7,7 @@ class MultiDownshift extends React.Component {
   public render() {
     const items = starwarsNames.all;
     return (
-      <Downshift onChange={this.onChange} itemToString={this.itemToString}>
+      <Downshift onChange={this.onChange}>
         {({
           getInputProps,
           getItemProps,
@@ -53,7 +53,6 @@ class MultiDownshift extends React.Component {
   }
 
   private onChange = (selection: any) => alert(`You selected ${selection}`);
-  private itemToString = (item: any) => (item ? item : "");
 }
 
 export default MultiDownshift;
