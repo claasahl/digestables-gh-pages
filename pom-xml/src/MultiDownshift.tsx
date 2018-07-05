@@ -11,10 +11,24 @@ interface IProps {
   closeMenuIcon: IconProp;
 }
 
-class MultiDownshift extends React.Component<IProps> {
+interface IState {
+  selectedItems: string[];
+}
+
+class MultiDownshift extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      selectedItems: []
+    };
+  }
+
   public render() {
     return (
-      <Downshift onChange={this.onChange}>
+      <Downshift
+        selectedItem={this.state.selectedItems}
+        onChange={this.onItemAdd}
+      >
         {({
           getInputProps,
           getItemProps,
@@ -25,48 +39,61 @@ class MultiDownshift extends React.Component<IProps> {
           inputValue,
           highlightedIndex,
           selectedItem
-        }) => (
-          <div>
-            <label {...getLabelProps()}>Enter a fruit</label>
-            <input {...getInputProps()} />
-            <button {...getToggleButtonProps()}>
-              <FontAwesomeIcon
-                icon={
-                  isOpen ? this.props.closeMenuIcon : this.props.openMenuIcon
-                }
-              />{" "}
-            </button>
-            <ul {...getMenuProps()}>
-              {isOpen
-                ? this.items(inputValue).map((item, index) => (
-                    <li
-                      {...getItemProps({
-                        index,
-                        item,
-                        key: item,
-                        style: {
-                          backgroundColor:
-                            highlightedIndex === index ? "lightgray" : "white",
-                          fontWeight: selectedItem === item ? "bold" : "normal"
-                        }
-                      })}
-                    >
-                      {item}
-                    </li>
-                  ))
-                : null}
-            </ul>
-          </div>
-        )}
+        }) => {
+          const tagItems = selectedItem.map((item: string, index: number) => {
+            return { item, index };
+          });
+          return (
+            <div>
+              <label {...getLabelProps()}>Enter a fruit</label>
+              <input {...getInputProps()} />
+              <button {...getToggleButtonProps()}>
+                <FontAwesomeIcon
+                  icon={
+                    isOpen ? this.props.closeMenuIcon : this.props.openMenuIcon
+                  }
+                />{" "}
+              </button>
+              {tagItems.map((tag: any) => <div>{JSON.stringify(tag)}</div>)}
+              <ul {...getMenuProps()}>
+                {isOpen
+                  ? this.items(inputValue).map((item, index) => (
+                      <li
+                        {...getItemProps({
+                          index,
+                          item,
+                          key: item,
+                          style: {
+                            backgroundColor:
+                              highlightedIndex === index
+                                ? "lightgray"
+                                : "white",
+                            fontWeight:
+                              selectedItem === item ? "bold" : "normal"
+                          }
+                        })}
+                      >
+                        {item}
+                      </li>
+                    ))
+                  : null}
+              </ul>
+            </div>
+          );
+        }}
       </Downshift>
     );
   }
 
-  private onChange = (selection: any) => alert(`You selected ${selection}`);
-
   private items = (value: string | null) => {
     const names = starwarsNames.all;
     return value ? matchSorter(names, value) : names;
+  };
+
+  private onItemAdd = (item: any) => {
+    this.setState({
+      selectedItems: [...this.state.selectedItems, item]
+    });
   };
 }
 
