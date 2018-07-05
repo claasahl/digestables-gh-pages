@@ -1,9 +1,16 @@
 import * as React from "react";
 
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Downshift from "downshift";
 import * as starwarsNames from "starwars-names";
 
-class MultiDownshift extends React.Component {
+interface IProps {
+  openMenuIcon: IconProp;
+  closeMenuIcon: IconProp;
+}
+
+class MultiDownshift extends React.Component<IProps> {
   public render() {
     const items = starwarsNames.all;
     return (
@@ -13,6 +20,7 @@ class MultiDownshift extends React.Component {
           getItemProps,
           getLabelProps,
           getMenuProps,
+          getToggleButtonProps,
           isOpen,
           inputValue,
           highlightedIndex,
@@ -21,6 +29,13 @@ class MultiDownshift extends React.Component {
           <div>
             <label {...getLabelProps()}>Enter a fruit</label>
             <input {...getInputProps()} />
+            <button {...getToggleButtonProps()}>
+              <FontAwesomeIcon
+                icon={
+                  isOpen ? this.props.closeMenuIcon : this.props.openMenuIcon
+                }
+              />{" "}
+            </button>
             <ul {...getMenuProps()}>
               {isOpen
                 ? items
