@@ -1,12 +1,40 @@
 import * as React from "react";
-import MultiDownshift from "./MultiDownshift";
+import Select from "react-select";
+import "react-select/dist/react-select.css";
 
-class Test extends React.Component {
+interface IOption {
+  value: string;
+  label: string;
+}
+interface IState {
+  selectedOption: IOption | undefined;
+}
+
+class Test extends React.Component<any, IState> {
+  constructor(props: any) {
+    super(props);
+    this.state = { selectedOption: undefined };
+  }
+
   public render() {
+    const { selectedOption } = this.state;
+    const value = selectedOption && selectedOption.value;
     return (
-      <MultiDownshift openMenuIcon="angle-down" closeMenuIcon="angle-up" />
+      <Select
+        name="form-field-name"
+        value={value}
+        onChange={this.handleChange}
+        options={[
+          { value: "one", label: "One" },
+          { value: "two", label: "Two" }
+        ]}
+      />
     );
   }
+
+  private handleChange = (selectedOption: IOption) => {
+    this.setState({ selectedOption });
+  };
 }
 
 export default Test;
