@@ -2,6 +2,8 @@ import * as React from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 
+import * as starwarsNames from "starwars-names";
+
 interface IOption {
   value: string;
   label: string;
@@ -17,22 +19,21 @@ class Test extends React.Component<any, IState> {
   }
 
   public render() {
+    const names = starwarsNames.all.map(name => ({ label: name, value: name }));
     const { selectedOption } = this.state;
     const value = selectedOption && selectedOption.value;
     return (
       <Select
-        name="form-field-name"
+        multi={true}
+        onChange={this.onChange}
+        options={names}
+        simpleValue={true}
         value={value}
-        onChange={this.handleChange}
-        options={[
-          { value: "one", label: "One" },
-          { value: "two", label: "Two" }
-        ]}
       />
     );
   }
 
-  private handleChange = (selectedOption: IOption) => {
+  private onChange = (selectedOption: IOption) => {
     this.setState({ selectedOption });
   };
 }
