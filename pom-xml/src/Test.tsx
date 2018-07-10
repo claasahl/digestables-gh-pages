@@ -10,25 +10,24 @@ interface IOption {
 }
 interface IState {
   selectedOption: IOption | undefined;
+  options: IOption[];
 }
 
 class Test extends React.Component<any, IState> {
   constructor(props: any) {
     super(props);
-    this.state = { selectedOption: undefined };
+    const names = starwarsNames.all.map(name => ({ label: name, value: name }));
+    this.state = { selectedOption: undefined, options: names };
   }
 
   public render() {
-    const names = starwarsNames.all.map(name => ({ label: name, value: name }));
-    const { selectedOption } = this.state;
-    const value = selectedOption && selectedOption.value;
     return (
       <Select
         multi={true}
         onChange={this.onChange}
-        options={names}
+        options={this.state.options}
         simpleValue={true}
-        value={value}
+        value={this.state.selectedOption}
       />
     );
   }
