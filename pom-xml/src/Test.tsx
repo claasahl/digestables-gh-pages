@@ -43,7 +43,10 @@ class Test extends React.Component<any, IState> {
     filter: string,
     currentValues: IOption[]
   ) => {
-    return matchSorter(options, filter, { keys: ["label"] });
+    const remaingOptions = options.filter(
+      option => currentValues.indexOf(option) === -1
+    );
+    return matchSorter(remaingOptions, filter, { keys: ["label"] });
   };
 }
 
