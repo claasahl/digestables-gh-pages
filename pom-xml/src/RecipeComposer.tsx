@@ -29,8 +29,8 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     this.state = {
       ingredients: Map<string, Ingredient>(),
       options: ingredients.map(ingrdient => ({
-        value: ingrdient,
-        label: ingrdient.name
+        label: ingrdient.name,
+        value: ingrdient
       })),
       recipe: "",
       selectedOption: undefined,
