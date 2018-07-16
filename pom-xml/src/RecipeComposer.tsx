@@ -3,7 +3,6 @@ import * as React from "react";
 import "./RecipeComposer.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import RecipeCopyToClipboard from "./RecipeCopyToClipboard";
 import RecipeDownload from "./RecipeDownload";
 
 import Select from "react-select";
@@ -72,12 +71,6 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
             </div>
             <div className="input-group-append">
               <RecipeDownload recipe={this.state.recipe} disabled={disabled} />
-            </div>
-            <div className="input-group-append">
-              <RecipeCopyToClipboard
-                recipe={this.state.recipe}
-                disabled={disabled}
-              />
             </div>
           </div>
         </div>
