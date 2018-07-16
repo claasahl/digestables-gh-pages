@@ -2,6 +2,9 @@ import * as React from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 
+import * as FileSaver from "file-saver";
+import * as JSZip from "jszip";
+
 import matchSorter from "match-sorter";
 import * as starwarsNames from "starwars-names";
 
@@ -23,14 +26,18 @@ class Test extends React.Component<any, IState> {
 
   public render() {
     return (
-      <Select
-        multi={true}
-        onChange={this.onChange}
-        options={this.state.options}
-        simpleValue={true}
-        value={this.state.selectedOption}
-        filterOptions={this.filterOptions}
-      />
+      <div>
+        <Select
+          multi={true}
+          onChange={this.onChange}
+          options={this.state.options}
+          value={this.state.selectedOption}
+          filterOptions={this.filterOptions}
+        />
+        <button type="button" className="btn btn-light" onClick={this.onClick}>
+          Generate ZIP file
+        </button>
+      </div>
     );
   }
 
@@ -47,6 +54,15 @@ class Test extends React.Component<any, IState> {
       option => currentValues.indexOf(option) === -1
     );
     return matchSorter(remaingOptions, filter, { keys: ["label"] });
+  };
+
+  private onClick = () => {
+    const zip = new JSZip();
+    zip.file("Hello.txt", "Hello World\n");
+    zip.file("selectedOptions.json", JSON.stringify(this.state.selectedOption));
+    zip.generateAsync({ type: "blob" }).then(content => {
+      FileSaver.saveAs(content, "example.zip");
+    });
   };
 }
 
