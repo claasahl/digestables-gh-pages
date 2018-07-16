@@ -50,28 +50,26 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
     const disabled =
       this.state.updateRecipe || this.state.ingredients.isEmpty();
     return (
-      <div>
-        <div id="recipe-composer">
-          <div className="input-group">
-            <Select
-              multi={true}
-              onChange={this.onChange}
-              options={this.state.options}
-              simpleValue={true}
-              value={this.state.selectedOption}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                onClick={this.handleSampleAdd}
-                type="button"
-              >
-                <FontAwesomeIcon icon="plus-square" />
-              </button>
-            </div>
-            <div className="input-group-append">
-              <RecipeDownload recipe={this.state.recipe} disabled={disabled} />
-            </div>
+      <div id="recipe-composer">
+        <div className="input-group">
+          <Select
+            multi={true}
+            onChange={this.onChange}
+            options={this.state.options}
+            simpleValue={true}
+            value={this.state.selectedOption}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              onClick={this.handleSampleAdd}
+              type="button"
+            >
+              <FontAwesomeIcon icon="plus-square" />
+            </button>
+          </div>
+          <div className="input-group-append">
+            <RecipeDownload recipe={this.state.recipe} disabled={disabled} />
           </div>
         </div>
       </div>
