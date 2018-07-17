@@ -13,7 +13,7 @@ interface IOption {
   label: string;
 }
 interface IState {
-  selectedOptions: IOption | undefined;
+  selectedOptions: IOption[];
   options: IOption[];
 }
 
@@ -21,7 +21,7 @@ class Test extends React.Component<any, IState> {
   constructor(props: any) {
     super(props);
     const names = starwarsNames.all.map(name => ({ label: name, value: name }));
-    this.state = { selectedOptions: undefined, options: names };
+    this.state = { selectedOptions: [], options: names };
   }
 
   public render() {
@@ -41,7 +41,7 @@ class Test extends React.Component<any, IState> {
     );
   }
 
-  private onChange = (selectedOptions: IOption) => {
+  private onChange = (selectedOptions: IOption[]) => {
     this.setState({ selectedOptions });
   };
   private filterOptions = (
@@ -59,12 +59,12 @@ class Test extends React.Component<any, IState> {
     const zip = new JSZip();
     zip.file("Hello.txt", "Hello World\n");
     zip.file(
-      "selectionOption.json",
+      "selectionOptions.json",
       JSON.stringify(this.state.selectedOptions)
     );
-    // for(const selectedOption of this.state.selectedOption) {
-    //   zip.file(selectedOption.label + ".json", JSON.stringify(selectedOption));
-    // }
+    for (const selectedOption of this.state.selectedOptions) {
+      zip.file(selectedOption.label + ".json", JSON.stringify(selectedOption));
+    }
     zip.generateAsync({ type: "blob" }).then(content => {
       FileSaver.saveAs(content, "example.zip");
     });
