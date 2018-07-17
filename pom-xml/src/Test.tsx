@@ -13,7 +13,7 @@ interface IOption {
   label: string;
 }
 interface IState {
-  selectedOption: IOption | undefined;
+  selectedOptions: IOption | undefined;
   options: IOption[];
 }
 
@@ -21,7 +21,7 @@ class Test extends React.Component<any, IState> {
   constructor(props: any) {
     super(props);
     const names = starwarsNames.all.map(name => ({ label: name, value: name }));
-    this.state = { selectedOption: undefined, options: names };
+    this.state = { selectedOptions: undefined, options: names };
   }
 
   public render() {
@@ -31,7 +31,7 @@ class Test extends React.Component<any, IState> {
           multi={true}
           onChange={this.onChange}
           options={this.state.options}
-          value={this.state.selectedOption}
+          value={this.state.selectedOptions}
           filterOptions={this.filterOptions}
         />
         <button type="button" className="btn btn-light" onClick={this.onClick}>
@@ -41,10 +41,9 @@ class Test extends React.Component<any, IState> {
     );
   }
 
-  private onChange = (selectedOption: IOption) => {
-    this.setState({ selectedOption });
+  private onChange = (selectedOptions: IOption) => {
+    this.setState({ selectedOptions });
   };
-
   private filterOptions = (
     options: IOption[],
     filter: string,
@@ -59,7 +58,13 @@ class Test extends React.Component<any, IState> {
   private onClick = () => {
     const zip = new JSZip();
     zip.file("Hello.txt", "Hello World\n");
-    zip.file("selectedOptions.json", JSON.stringify(this.state.selectedOption));
+    zip.file(
+      "selectionOption.json",
+      JSON.stringify(this.state.selectedOptions)
+    );
+    // for(const selectedOption of this.state.selectedOption) {
+    //   zip.file(selectedOption.label + ".json", JSON.stringify(selectedOption));
+    // }
     zip.generateAsync({ type: "blob" }).then(content => {
       FileSaver.saveAs(content, "example.zip");
     });
