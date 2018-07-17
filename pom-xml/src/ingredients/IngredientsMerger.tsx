@@ -1,4 +1,3 @@
-// FIXME: changed from "export = deepmerge;" to "export default deepmerge;"
 import deepmerge from "deepmerge";
 import { Builder, Parser } from "xml2js";
 import { Ingredient } from "./Ingredients";
