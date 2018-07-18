@@ -2,8 +2,8 @@ import * as React from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 
-import * as FileSaver from "file-saver";
-import * as JSZip from "jszip";
+import FileSaver from "file-saver";
+import JSZip from "jszip";
 
 import matchSorter from "match-sorter";
 import * as starwarsNames from "starwars-names";

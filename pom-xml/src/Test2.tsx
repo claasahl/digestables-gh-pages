@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import * as FileSaver from "file-saver";
-import * as JSZip from "jszip";
+import FileSaver from "file-saver";
+import JSZip from "jszip";
 
 class Test2 extends React.Component {
   public render() {
