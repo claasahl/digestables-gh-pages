@@ -1,11 +1,10 @@
 import * as React from "react";
 import Select from "react-select";
-import "react-select/dist/react-select.css";
 
 import FileSaver from "file-saver";
 import JSZip from "jszip";
 
-import matchSorter from "match-sorter";
+// import matchSorter from "match-sorter";
 import * as starwarsNames from "starwars-names";
 
 interface IOption {
@@ -28,11 +27,11 @@ class Test extends React.Component<any, IState> {
     return (
       <div>
         <Select
-          multi={true}
+          isMulti={true}
           onChange={this.onChange}
           options={this.state.options}
           value={this.state.selectedOptions}
-          filterOptions={this.filterOptions}
+          // filterOptions={this.filterOptions}
         />
         <button type="button" className="btn btn-light" onClick={this.onClick}>
           Generate ZIP file
@@ -44,16 +43,16 @@ class Test extends React.Component<any, IState> {
   private onChange = (selectedOptions: IOption[]) => {
     this.setState({ selectedOptions });
   };
-  private filterOptions = (
-    options: IOption[],
-    filter: string,
-    currentValues: IOption[]
-  ) => {
-    const remaingOptions = options.filter(
-      option => currentValues.indexOf(option) === -1
-    );
-    return matchSorter(remaingOptions, filter, { keys: ["label"] });
-  };
+  // private filterOptions = (
+  //   options: IOption[],
+  //   filter: string,
+  //   currentValues: IOption[]
+  // ) => {
+  //   const remaingOptions = options.filter(
+  //     option => currentValues.indexOf(option) === -1
+  //   );
+  //   return matchSorter(remaingOptions, filter, { keys: ["label"] });
+  // };
 
   private onClick = () => {
     const zip = new JSZip();

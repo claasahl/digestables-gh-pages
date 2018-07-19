@@ -53,10 +53,9 @@ class RecipeComposer extends React.Component<any, IRecipeComposerState> {
       <div id="recipe-composer">
         <div className="input-group">
           <Select
-            multi={true}
+            isMulti={true}
             onChange={this.onChange}
             options={this.state.options}
-            simpleValue={true}
             value={this.state.selectedOption}
           />
           <div className="input-group-append">
