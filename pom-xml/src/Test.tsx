@@ -4,7 +4,6 @@ import Select from "react-select";
 import FileSaver from "file-saver";
 import JSZip from "jszip";
 
-// import matchSorter from "match-sorter";
 import * as starwarsNames from "starwars-names";
 
 interface IOption {
@@ -31,7 +30,6 @@ class Test extends React.Component<any, IState> {
           onChange={this.onChange}
           options={this.state.options}
           value={this.state.selectedOptions}
-          // filterOptions={this.filterOptions}
         />
         <button type="button" className="btn btn-light" onClick={this.onClick}>
           Generate ZIP file
@@ -43,16 +41,6 @@ class Test extends React.Component<any, IState> {
   private onChange = (selectedOptions: IOption[]) => {
     this.setState({ selectedOptions });
   };
-  // private filterOptions = (
-  //   options: IOption[],
-  //   filter: string,
-  //   currentValues: IOption[]
-  // ) => {
-  //   const remaingOptions = options.filter(
-  //     option => currentValues.indexOf(option) === -1
-  //   );
-  //   return matchSorter(remaingOptions, filter, { keys: ["label"] });
-  // };
 
   private onClick = () => {
     const zip = new JSZip();
