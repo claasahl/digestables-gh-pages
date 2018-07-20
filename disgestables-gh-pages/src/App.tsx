@@ -3,6 +3,9 @@ import "./App.css";
 
 import logo from "./logo.svg";
 
+import Select from "react-select";
+import { options } from "./data";
+
 class App extends React.Component {
   public render() {
     return (
@@ -14,8 +17,21 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <Select
+          isMulti={true}
+          options={options}
+          getOptionLabel={this.getOptionLabel}
+          getOptionValue={this.getOptionValue}
+        />
       </div>
     );
+  }
+
+  private getOptionLabel(option: string): string {
+    return option;
+  }
+  private getOptionValue(option: string): string {
+    return option;
   }
 }
 
