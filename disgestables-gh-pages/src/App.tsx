@@ -8,8 +8,21 @@ import Select from "react-select";
 import makeAnimated from "react-select/lib/animated";
 import { options } from "./data";
 
-class App extends React.Component {
+interface IState {
+  selectedOptions: string[];
+}
+
+class App extends React.Component<any, IState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      selectedOptions: []
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
   public render() {
+    const { selectedOptions } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -19,12 +32,21 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <p>
+          You have {selectedOptions.length}{" "}
+          {selectedOptions.length > 1 || selectedOptions.length === 0
+            ? "options"
+            : "option"}{" "}
+          selected.
+        </p>
+        {selectedOptions}
         <div className="container">
           <Select
             isMulti={true}
             closeMenuOnSelect={false}
             options={options}
             components={makeAnimated<string>()}
+            onChange={this.onChange}
             getOptionLabel={this.getOptionLabel}
             getOptionValue={this.getOptionValue}
           />
@@ -33,6 +55,11 @@ class App extends React.Component {
     );
   }
 
+  private onChange(selectedOptions: string[]) {
+    this.setState(() => ({
+      selectedOptions
+    }));
+  }
   private getOptionLabel(option: string): string {
     return option;
   }
