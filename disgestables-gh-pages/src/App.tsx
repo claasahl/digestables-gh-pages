@@ -4,6 +4,7 @@ import "./App.css";
 import logo from "./logo.svg";
 
 import Select from "react-select";
+import makeAnimated from "react-select/lib/animated";
 import { options } from "./data";
 
 class App extends React.Component {
@@ -19,7 +20,9 @@ class App extends React.Component {
         </p>
         <Select
           isMulti={true}
+          closeMenuOnSelect={false}
           options={options}
+          components={makeAnimated<string>()}
           getOptionLabel={this.getOptionLabel}
           getOptionValue={this.getOptionValue}
         />
