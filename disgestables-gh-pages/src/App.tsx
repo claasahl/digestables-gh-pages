@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from "react";
 import "./App.css";
 
@@ -18,14 +19,16 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <Select
-          isMulti={true}
-          closeMenuOnSelect={false}
-          options={options}
-          components={makeAnimated<string>()}
-          getOptionLabel={this.getOptionLabel}
-          getOptionValue={this.getOptionValue}
-        />
+        <div className="container">
+          <Select
+            isMulti={true}
+            closeMenuOnSelect={false}
+            options={options}
+            components={makeAnimated<string>()}
+            getOptionLabel={this.getOptionLabel}
+            getOptionValue={this.getOptionValue}
+          />
+        </div>
       </div>
     );
   }
