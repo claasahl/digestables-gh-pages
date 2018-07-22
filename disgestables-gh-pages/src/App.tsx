@@ -7,9 +7,10 @@ import logo from "./logo.svg";
 import Select from "react-select";
 import makeAnimated from "react-select/lib/animated";
 import { options } from "./data";
+import { IDigestable } from "./digestables/Digestable";
 
 interface IState {
-  selectedOptions: string[];
+  selectedOptions: IDigestable[];
 }
 
 class App extends React.Component<any, IState> {
@@ -39,13 +40,15 @@ class App extends React.Component<any, IState> {
             : "option"}{" "}
           selected.
         </p>
-        {selectedOptions}
+        {selectedOptions.map(selectedOption => (
+          <p key={selectedOption.name}>{selectedOption.name}</p>
+        ))}
         <div className="container">
           <Select
             isMulti={true}
             closeMenuOnSelect={false}
             options={options}
-            components={makeAnimated<string>()}
+            components={makeAnimated<IDigestable>()}
             onChange={this.onChange}
             getOptionLabel={this.getOptionLabel}
             getOptionValue={this.getOptionValue}
@@ -55,16 +58,16 @@ class App extends React.Component<any, IState> {
     );
   }
 
-  private onChange(selectedOptions: string[]) {
+  private onChange(selectedOptions: IDigestable[]) {
     this.setState(() => ({
       selectedOptions
     }));
   }
-  private getOptionLabel(option: string): string {
-    return option;
+  private getOptionLabel(option: IDigestable): string {
+    return option.name;
   }
-  private getOptionValue(option: string): string {
-    return option;
+  private getOptionValue(option: IDigestable): string {
+    return option.name;
   }
 }
 
