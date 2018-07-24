@@ -1,1 +1,4 @@
-{ "name": "Minimal Digestable", "files": ["./pom.xml"] }
+{
+  "name": "Minimal Digestable",
+  "files": ["./pom.xml"]
+}
