@@ -7,7 +7,7 @@ import logo from "./logo.svg";
 import Select from "react-select";
 import makeAnimated from "react-select/lib/animated";
 import { options } from "./data";
-import { IDigestable } from "./digestables/Digestable";
+import { IDigestable } from "./Digestable";
 
 interface IState {
   selectedOptions: IDigestable[];
@@ -41,7 +41,7 @@ class App extends React.Component<any, IState> {
           selected.
         </p>
         {selectedOptions.map(selectedOption => (
-          <p key={selectedOption.name}>{selectedOption.name}</p>
+          <p key={selectedOption.name}>{JSON.stringify(selectedOption)}</p>
         ))}
         <div className="container">
           <Select
