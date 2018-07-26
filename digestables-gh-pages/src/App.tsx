@@ -44,11 +44,11 @@ class App extends React.Component<any, IState> {
           <p key={selectedOption.name}>{JSON.stringify(selectedOption)}</p>
         ))}
         <div className="container">
-          <Select
+          <Select<IDigestable>
             isMulti={true}
             closeMenuOnSelect={false}
             options={options}
-            components={makeAnimated<IDigestable>()}
+            components={makeAnimated()}
             onChange={this.onChange}
             getOptionLabel={this.getOptionLabel}
             getOptionValue={this.getOptionValue}
