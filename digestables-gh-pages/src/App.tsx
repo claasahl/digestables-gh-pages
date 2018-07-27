@@ -22,6 +22,7 @@ class App extends React.Component<any, IState> {
     this.state = {
       selectedOptions: []
     };
+    this.save = this.save.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
@@ -46,7 +47,9 @@ class App extends React.Component<any, IState> {
         {selectedOptions.map(selectedOption => (
           <p key={selectedOption.name}>{JSON.stringify(selectedOption)}</p>
         ))}
-        <button onClick={this.save}>save</button>
+        <button onClick={this.save} disabled={selectedOptions.length === 0}>
+          save
+        </button>
         <div className="container">
           <Select<IDigestable>
             isMulti={true}
@@ -63,8 +66,13 @@ class App extends React.Component<any, IState> {
   }
 
   private async save() {
+    const { selectedOptions } = this.state;
     const zip = new JSZip();
     zip.file("Hello.txt", "Hello world\n");
+    for (const option of selectedOptions) {
+      zip.file(`${option.name}/digestable.json`, JSON.stringify(option));
+    }
+
     const blob = await zip.generateAsync({ type: "blob" });
     saveAs(blob, "hello.zip");
   }
