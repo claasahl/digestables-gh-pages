@@ -9,6 +9,9 @@ import makeAnimated from "react-select/lib/animated";
 import { options } from "./data";
 import { IDigestable } from "./Digestable";
 
+import { saveAs } from "file-saver";
+import * as JSZip from "jszip";
+
 interface IState {
   selectedOptions: IDigestable[];
 }
@@ -43,6 +46,7 @@ class App extends React.Component<any, IState> {
         {selectedOptions.map(selectedOption => (
           <p key={selectedOption.name}>{JSON.stringify(selectedOption)}</p>
         ))}
+        <button onClick={this.save}>save</button>
         <div className="container">
           <Select<IDigestable>
             isMulti={true}
@@ -56,6 +60,13 @@ class App extends React.Component<any, IState> {
         </div>
       </div>
     );
+  }
+
+  private async save() {
+    const zip = new JSZip();
+    zip.file("Hello.txt", "Hello world\n");
+    const blob = await zip.generateAsync({ type: "blob" });
+    saveAs(blob, "hello.zip");
   }
 
   private onChange(selectedOptions: IDigestable[]) {
