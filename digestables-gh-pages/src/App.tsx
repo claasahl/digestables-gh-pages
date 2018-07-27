@@ -65,14 +65,30 @@ class App extends React.Component<any, IState> {
     );
   }
 
+  private async fetch(option: IDigestable, file: string): Promise<string> {
+    const url = new URL("./" + file, option.baseURL);
+    const response = await fetch(url.toString());
+    return response.text();
+  }
+
   private async save() {
     const { selectedOptions } = this.state;
     const zip = new JSZip();
-    zip.file("Hello.txt", "Hello world\n");
+    let log: string[] = [];
     for (const option of selectedOptions) {
-      zip.file(`${option.name}/digestable.json`, JSON.stringify(option));
+      zip.file(`${option.name}/option.json`, JSON.stringify(option));
+      for (const file of option.files) {
+        const url = new URL(file, option.baseURL);
+        zip.file(`${option.name}/url.json`, JSON.stringify(url));
+
+        const content = await this.fetch(option, file);
+        log = [...log, `${option.name}/${file}`];
+        // zip.file(url.pathname, content);
+        zip.file(`${option.name}/${file}`, content, { binary: true });
+      }
     }
 
+    zip.file("log.json", JSON.stringify(log));
     const blob = await zip.generateAsync({ type: "blob" });
     saveAs(blob, "hello.zip");
   }
