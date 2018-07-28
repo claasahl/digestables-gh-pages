@@ -78,12 +78,8 @@ class App extends React.Component<any, IState> {
     for (const option of selectedOptions) {
       zip.file(`${option.name}/option.json`, JSON.stringify(option));
       for (const file of option.files) {
-        const url = new URL(file, option.baseURL);
-        zip.file(`${option.name}/url.json`, JSON.stringify(url));
-
         const content = await this.fetch(option, file);
         log = [...log, `${option.name}/${file}`];
-        // zip.file(url.pathname, content);
         zip.file(`${option.name}/${file}`, content, { binary: true });
       }
     }
