@@ -74,17 +74,14 @@ class App extends React.Component<any, IState> {
   private async save() {
     const { selectedOptions } = this.state;
     const zip = new JSZip();
-    let log: string[] = [];
     for (const option of selectedOptions) {
       zip.file(`${option.name}/option.json`, JSON.stringify(option));
       for (const file of option.files) {
         const content = await this.fetch(option, file);
-        log = [...log, `${option.name}/${file}`];
         zip.file(`${option.name}/${file}`, content, { binary: true });
       }
     }
 
-    zip.file("log.json", JSON.stringify(log));
     const blob = await zip.generateAsync({ type: "blob" });
     saveAs(blob, "hello.zip");
   }
