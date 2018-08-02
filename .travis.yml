@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "node"
+script: npm test && npm build
 deploy:
   local-dir: build
   provider: pages
@@ -9,3 +10,4 @@ deploy:
   keep-history: true
   on:
     branch: master
+  verbose: true
