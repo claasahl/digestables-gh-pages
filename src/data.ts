@@ -7,7 +7,7 @@ function isDevelopment(): boolean {
 }
 const BASE = isDevelopment()
   ? "http://localhost:3000/digestables/"
-  : "https://claasahl.github.io/maven-starter-project/";
+  : "https://claasahl.github.io/digestables-gh-pages/digestables/";
 
 const samples: IDigestable[] = [
   {
