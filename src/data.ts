@@ -1,7 +1,5 @@
 import { IDigestable } from "./Digestable";
 
-import { all as starwarsNames } from "starwars-names";
-
 function isDevelopment(): boolean {
   return !process.env.NODE_ENV || process.env.NODE_ENV === "development";
 }
@@ -32,13 +30,4 @@ const samples: IDigestable[] = [
   }
 ];
 
-const digestables: IDigestable[] = [
-  ...samples,
-  ...starwarsNames.map(name => ({
-    baseURL: new URL(`./${name}/`, BASE),
-    files: ["pom.xml"],
-    name
-  }))
-];
-
-export { digestables as options };
+export { samples as options };
