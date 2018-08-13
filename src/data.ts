@@ -9,6 +9,16 @@ const BASE = isDevelopment()
 
 const samples: IDigestable[] = [
   {
+    baseURL: new URL("./example-no-1/", BASE),
+    files: ["pom.xml"],
+    name: "Example #1"
+  },
+  {
+    baseURL: new URL("./hello-world/", BASE),
+    files: ["pom.xml", "src/main/java/org/github/claasahl/HelloWorld.java"],
+    name: "Hello World"
+  },
+  {
     baseURL: new URL("./minimal/", BASE),
     files: ["pom.xml"],
     name: "Minimal Digestable"
@@ -17,16 +27,6 @@ const samples: IDigestable[] = [
     baseURL: new URL("./simple/", BASE),
     files: ["pom.xml", "README.md"],
     name: "Simple Digestable"
-  },
-  {
-    baseURL: new URL("./hello-world/", BASE),
-    files: ["pom.xml", "src/main/java/org/github/claasahl/HelloWorld.java"],
-    name: "Hello World"
-  },
-  {
-    baseURL: new URL("./example-no-1/", BASE),
-    files: ["pom.xml"],
-    name: "Example #1"
   }
 ];
 
