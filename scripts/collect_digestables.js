@@ -1,5 +1,4 @@
 var read = require("fs-readdir-recursive");
-var jsonfile = require("jsonfile");
 var fs = require("fs");
 
 const DISGESTABLE = ".digestable.json";
@@ -16,7 +15,8 @@ console.log(JSON.stringify(files));
 
 var digestables = [];
 files.forEach(file => {
-  const obj = jsonfile.readFileSync(BASE + file + DISGESTABLE);
+  const json = fs.readFileSync(BASE + file + DISGESTABLE);
+  const obj = JSON.parse(json);
   obj.baseURL = "./" + file;
   digestables.push(obj);
 });
