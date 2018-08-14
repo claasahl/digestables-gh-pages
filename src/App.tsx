@@ -34,9 +34,6 @@ class App extends React.Component<any, IState> {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
         <p>
           You have {selectedOptions.length}{" "}
           {selectedOptions.length > 1 || selectedOptions.length === 0
@@ -44,9 +41,6 @@ class App extends React.Component<any, IState> {
             : "option"}{" "}
           selected.
         </p>
-        {selectedOptions.map(selectedOption => (
-          <p key={selectedOption.name}>{JSON.stringify(selectedOption)}</p>
-        ))}
         <button onClick={this.save} disabled={selectedOptions.length === 0}>
           save
         </button>
