@@ -20,7 +20,7 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "precommit": "pretty-quick --staged",
-    "collect": "node scripts/collect_digestables.js"
+    "collect": "node scripts/collect_digestables.js && prettier src/data.ts"
   },
   "devDependencies": {
     "@types/file-saver": "^1.3.0",
