@@ -35,7 +35,7 @@ class App extends React.Component<any, IState> {
     return (
       <div className="App">
         <header className="App-header">
-          <FontAwesomeIcon size="5x" icon="cookie-bite" />
+          <FontAwesomeIcon className="App-logo" size="5x" icon="cookie-bite" />
           <h1 className="App-title">Combine Digestable Examples</h1>
         </header>
         <p>
@@ -45,9 +45,6 @@ class App extends React.Component<any, IState> {
             : "option"}{" "}
           selected.
         </p>
-        <button onClick={this.save} disabled={selectedOptions.length === 0}>
-          save
-        </button>
         <div className="container">
           <Select<IDigestable>
             isMulti={true}
@@ -59,6 +56,9 @@ class App extends React.Component<any, IState> {
             getOptionValue={this.getOptionValue}
           />
         </div>
+        <button onClick={this.save} disabled={selectedOptions.length === 0}>
+          save
+        </button>
       </div>
     );
   }

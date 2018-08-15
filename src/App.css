@@ -3,8 +3,11 @@
 }
 
 .App-logo {
+  /*
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  */
+  color: rgba(255, 56, 96, 1);
 }
 
 .App-header {
