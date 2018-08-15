@@ -48,17 +48,21 @@ class App extends React.Component<any, IState> {
         <div className="container">
           <Select<IDigestable>
             isMulti={true}
-            closeMenuOnSelect={false}
             options={options}
             components={makeAnimated()}
             onChange={this.onChange}
             getOptionLabel={this.getOptionLabel}
             getOptionValue={this.getOptionValue}
           />
+          <button
+            type="button"
+            className="btn btn-primary btn-lg"
+            onClick={this.save}
+            disabled={selectedOptions.length === 0}
+          >
+            Save
+          </button>
         </div>
-        <button onClick={this.save} disabled={selectedOptions.length === 0}>
-          save
-        </button>
       </div>
     );
   }
