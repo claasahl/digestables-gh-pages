@@ -11,10 +11,10 @@ import { saveAs } from "file-saver";
 import * as JSZip from "jszip";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+import { faCookie, faCookieBite } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-library.add(faStroopwafel);
+library.add(faCookie, faCookieBite);
 
 interface IState {
   selectedOptions: IDigestable[];
@@ -35,8 +35,8 @@ class App extends React.Component<any, IState> {
     return (
       <div className="App">
         <header className="App-header">
-          <FontAwesomeIcon className="App-logo" size="5x" icon="stroopwafel" />
-          <h1 className="App-title">Welcome to React</h1>
+          <FontAwesomeIcon size="5x" icon="cookie-bite" />
+          <h1 className="App-title">Combine Digestable Examples</h1>
         </header>
         <p>
           You have {selectedOptions.length}{" "}
