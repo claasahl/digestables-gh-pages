@@ -2,8 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from "react";
 import "./App.css";
 
-import logo from "./logo.svg";
-
 import Select from "react-select";
 import makeAnimated from "react-select/lib/animated";
 import { options } from "./data";
@@ -11,6 +9,12 @@ import { IDigestable } from "./Digestable";
 
 import { saveAs } from "file-saver";
 import * as JSZip from "jszip";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(faStroopwafel);
 
 interface IState {
   selectedOptions: IDigestable[];
@@ -31,7 +35,7 @@ class App extends React.Component<any, IState> {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <FontAwesomeIcon className="App-logo" size="5x" icon="stroopwafel" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p>
