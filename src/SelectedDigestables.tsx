@@ -1,16 +1,23 @@
 import * as React from "react";
 import { IDigestable } from "./Digestable";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 interface IProps {
   selected: IDigestable[];
 }
 class SelectedDigestables extends React.Component<IProps> {
   public render() {
     const { selected } = this.props;
+    if (selected.length === 0) {
+      return <p>Start by Selecting Digestable Examples.</p>;
+    }
     return (
       <p>
-        You have {selected.length}{" "}
-        {selected.length > 1 || selected.length === 0 ? "options" : "option"}{" "}
+        You have{" "}
+        {selected.map(() => (
+          <FontAwesomeIcon icon="cookie" />
+        ))}{" "}
         selected.
       </p>
     );
