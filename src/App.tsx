@@ -13,6 +13,7 @@ import * as JSZip from "jszip";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCookie, faCookieBite } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SelectedDigestables from "./SelectedDigestables";
 
 library.add(faCookie, faCookieBite);
 
@@ -38,13 +39,7 @@ class App extends React.Component<any, IState> {
           <FontAwesomeIcon className="App-logo" size="5x" icon="cookie-bite" />
           <h1 className="App-title">Combine Digestable Examples</h1>
         </header>
-        <p>
-          You have {selectedOptions.length}{" "}
-          {selectedOptions.length > 1 || selectedOptions.length === 0
-            ? "options"
-            : "option"}{" "}
-          selected.
-        </p>
+        <SelectedDigestables selected={selectedOptions} />
         <div className="container">
           <Select<IDigestable>
             isMulti={true}
