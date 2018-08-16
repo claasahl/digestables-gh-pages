@@ -51,7 +51,7 @@ class App extends React.Component<any, IState> {
           />
           <button
             type="button"
-            className="btn btn-primary btn-lg"
+            className="btn btn-outline-danger btn-lg"
             onClick={this.save}
             disabled={selectedOptions.length === 0}
           >
