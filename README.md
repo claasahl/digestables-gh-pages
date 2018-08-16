@@ -40,7 +40,6 @@ Until such support for "mixins" arrives, one is left with pre-configureing plugi
 
 One can mvoe the `pluginManagement`-tag into a parent pom.xml file.
 
-
 ```xml
 <project>
 	<!-- ... -->
@@ -63,3 +62,7 @@ One can mvoe the `pluginManagement`-tag into a parent pom.xml file.
 	<!-- ... -->
 </project>
 ```
+
+## Favicon
+
+[Font Awesome Favicon Generator](https://gauger.io/fonticon/)
