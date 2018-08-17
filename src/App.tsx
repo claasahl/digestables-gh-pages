@@ -2,9 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as React from "react";
 import "./App.css";
 
-import Select from "react-select";
 import makeAnimated from "react-select/lib/animated";
-import { options } from "./data";
+import Select from "react-select/lib/Creatable";
+import { Option } from "react-select/lib/filters";
+import { options as data } from "./data";
 import { IDigestable } from "./Digestable";
 
 import { saveAs } from "file-saver";
@@ -33,6 +34,11 @@ class App extends React.Component<any, IState> {
 
   public render() {
     const { selectedOptions } = this.state;
+    const options = data.map(option => ({
+      data: option,
+      label: option.name,
+      value: option.name
+    }));
     return (
       <div className="App">
         <header className="App-header">
@@ -41,13 +47,14 @@ class App extends React.Component<any, IState> {
         </header>
         <SelectedDigestables selected={selectedOptions} />
         <div className="container">
-          <Select<IDigestable>
+          <Select<Option>
+            isClearable={true}
             isMulti={true}
             options={options}
             components={makeAnimated()}
             onChange={this.onChange}
-            getOptionLabel={this.getOptionLabel}
-            getOptionValue={this.getOptionValue}
+            isValidNewOption={this.isValidNewOption}
+            getNewOptionData={this.getNewOptionData}
           />
           <button
             type="button"
@@ -83,16 +90,37 @@ class App extends React.Component<any, IState> {
     saveAs(blob, "hello.zip");
   }
 
-  private onChange(selectedOptions: IDigestable[]) {
+  private onChange(selectedOptions: Option[]) {
     this.setState(() => ({
-      selectedOptions
+      selectedOptions: selectedOptions.map(option => option.data)
     }));
   }
-  private getOptionLabel(option: IDigestable): string {
-    return option.name;
+
+  private isValidNewOption(inputValue: string): boolean {
+    // tslint:disable:no-console
+    try {
+      // https://raw.githubusercontent.com/claasahl/digestables-gh-pages/master/public/digestables/simple/.digestable.json
+      console.log(inputValue);
+      const url = new URL(inputValue);
+      console.log(url);
+      console.log(url.pathname.endsWith("/.digestable.json"));
+      return url.pathname.endsWith("/.digestable.json");
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   }
-  private getOptionValue(option: IDigestable): string {
-    return option.name;
+
+  private getNewOptionData(inputValue: string): Option {
+    return {
+      data: {
+        baseURL: new URL("file://./example-no-1/"),
+        files: [],
+        name: inputValue
+      },
+      label: inputValue,
+      value: inputValue
+    };
   }
 }
 
