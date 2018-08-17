@@ -97,16 +97,11 @@ class App extends React.Component<any, IState> {
   }
 
   private isValidNewOption(inputValue: string): boolean {
-    // tslint:disable:no-console
     try {
       // https://raw.githubusercontent.com/claasahl/digestables-gh-pages/master/public/digestables/simple/.digestable.json
-      console.log(inputValue);
       const url = new URL(inputValue);
-      console.log(url);
-      console.log(url.pathname.endsWith("/.digestable.json"));
       return url.pathname.endsWith("/.digestable.json");
     } catch (error) {
-      console.error(error);
       return false;
     }
   }
