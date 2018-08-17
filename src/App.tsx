@@ -3,7 +3,7 @@ import * as React from "react";
 import "./App.css";
 
 import makeAnimated from "react-select/lib/animated";
-import Select from "react-select/lib/Creatable";
+import Select from "react-select/lib/Async";
 import { Option } from "react-select/lib/filters";
 import { options as data } from "./data";
 import { IDigestable } from "./Digestable";
@@ -30,15 +30,11 @@ class App extends React.Component<any, IState> {
     };
     this.save = this.save.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.loadOptions = this.loadOptions.bind(this);
   }
 
   public render() {
     const { selectedOptions } = this.state;
-    const options = data.map(option => ({
-      data: option,
-      label: option.name,
-      value: option.name
-    }));
     return (
       <div className="App">
         <header className="App-header">
@@ -50,11 +46,10 @@ class App extends React.Component<any, IState> {
           <Select<Option>
             isClearable={true}
             isMulti={true}
-            options={options}
+            defaultOptions={this.options(data)}
             components={makeAnimated()}
             onChange={this.onChange}
-            isValidNewOption={this.isValidNewOption}
-            getNewOptionData={this.getNewOptionData}
+            loadOptions={this.loadOptions}
           />
           <button
             type="button"
@@ -96,26 +91,45 @@ class App extends React.Component<any, IState> {
     }));
   }
 
-  private isValidNewOption(inputValue: string): boolean {
-    try {
-      // https://raw.githubusercontent.com/claasahl/digestables-gh-pages/master/public/digestables/simple/.digestable.json
-      const url = new URL(inputValue);
-      return url.pathname.endsWith("/.digestable.json");
-    } catch (error) {
-      return false;
-    }
+  private options(digestables: IDigestable[]): Option[] {
+    return digestables.map(option => ({
+      data: option,
+      label: option.name,
+      value: option.name
+    }));
   }
 
-  private getNewOptionData(inputValue: string): Option {
-    return {
-      data: {
-        baseURL: new URL("file://./example-no-1/"),
-        files: [],
-        name: inputValue
-      },
-      label: inputValue,
-      value: inputValue
-    };
+  // https://raw.githubusercontent.com/claasahl/digestables-gh-pages/master/public/digestables/simple/.digestable.json
+  // tslint:disable:no-console
+  private async loadOptions(inputValue: string): Promise<Option[]> {
+    const digestables: IDigestable[] = [...data];
+    try {
+      const url = new URL(inputValue);
+      const response = await fetch(inputValue);
+      const digestable = await response.json();
+      digestable.baseURL = url;
+      console.log(digestable);
+      if (this.still(digestable)) {
+        digestables.push(digestable);
+      }
+    } catch (error) {
+      // ignore
+      console.log("error", error);
+    }
+    return Promise.resolve(this.options(digestables));
+  }
+
+  private still(digestable: IDigestable): boolean {
+    console.log(
+      digestable,
+      typeof digestable.name,
+      typeof digestable.files,
+      typeof digestable.baseURL
+    );
+    if (!digestable) {
+      return false;
+    }
+    return true;
   }
 }
 
