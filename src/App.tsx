@@ -4,9 +4,10 @@ import "./App.css";
 
 import makeAnimated from "react-select/lib/animated";
 import Select from "react-select/lib/Async";
-import { Option } from "react-select/lib/filters";
+import { createFilter, Option } from "react-select/lib/filters";
 import { options as data } from "./data";
 import { IDigestable } from "./Digestable";
+import SelectedDigestables from "./SelectedDigestables";
 
 import { saveAs } from "file-saver";
 import * as JSZip from "jszip";
@@ -14,7 +15,6 @@ import * as JSZip from "jszip";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCookie, faCookieBite } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SelectedDigestables from "./SelectedDigestables";
 
 library.add(faCookie, faCookieBite);
 
@@ -108,15 +108,18 @@ class App extends React.Component<any, IState> {
       const response = await fetch(inputValue);
       const digestable = await response.json();
       digestable.baseURL = url;
-      console.log(digestable);
       if (this.still(digestable)) {
-        digestables.push(digestable);
+        return Promise.resolve(this.options([digestable]));
       }
     } catch (error) {
       // ignore
       console.log("error", error);
     }
-    return Promise.resolve(this.options(digestables));
+    const filter = createFilter();
+    const filteredDigestables = this.options(digestables).filter(option =>
+      filter(option, inputValue)
+    );
+    return Promise.resolve(filteredDigestables);
   }
 
   private still(digestable: IDigestable): boolean {
