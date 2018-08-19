@@ -100,7 +100,6 @@ class App extends React.Component<any, IState> {
   }
 
   // https://raw.githubusercontent.com/claasahl/digestables-gh-pages/master/public/digestables/simple/.digestable.json
-  // tslint:disable:no-console
   private async loadOptions(inputValue: string): Promise<Option[]> {
     const digestables: IDigestable[] = [...data];
     try {
@@ -113,7 +112,6 @@ class App extends React.Component<any, IState> {
       }
     } catch (error) {
       // ignore
-      console.log("error", error);
     }
     const filter = createFilter();
     const filteredDigestables = this.options(digestables).filter(option =>
@@ -123,16 +121,7 @@ class App extends React.Component<any, IState> {
   }
 
   private still(digestable: IDigestable): boolean {
-    console.log(
-      digestable,
-      typeof digestable.name,
-      typeof digestable.files,
-      typeof digestable.baseURL
-    );
-    if (!digestable) {
-      return false;
-    }
-    return true;
+    return digestable && Array.isArray(digestable.files);
   }
 }
 
