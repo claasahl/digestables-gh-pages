@@ -1,4 +1,0 @@
-{
-  "name": "Hello World",
-  "files": ["pom.xml", "src/main/java/org/github/claasahl/HelloWorld.java"]
-}
