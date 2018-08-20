@@ -15,6 +15,7 @@ import * as JSZip from "jszip";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCookie, faCookieBite } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CustomIndicatorsContainer from "./CustomIndicatorContainer";
 
 library.add(faCookie, faCookieBite);
 
@@ -47,7 +48,9 @@ class App extends React.Component<any, IState> {
             isClearable={true}
             isMulti={true}
             defaultOptions={this.options(data)}
-            components={makeAnimated()}
+            components={makeAnimated({
+              IndicatorsContainer: CustomIndicatorsContainer
+            })}
             onChange={this.onChange}
             loadOptions={this.loadOptions}
           />
