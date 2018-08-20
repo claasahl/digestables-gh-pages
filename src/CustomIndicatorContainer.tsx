@@ -23,15 +23,29 @@ class CustomIndicatorsContainer extends React.Component<
     return (
       <div style={{ background: "pink" }}>
         <components.IndicatorsContainer {...this.props}>
-          {!this.disabled() && <RenderButton onClick={this.onClick} />}
+          {!this.disabled() && (
+            <RenderButton
+              onMouseDown={this.onMouseDown}
+              onTouchEnd={this.onTouchEnd}
+            />
+          )}
           {this.props.children}
         </components.IndicatorsContainer>
       </div>
     );
   }
-  private onClick() {
+  private onMouseDown(event: React.MouseEvent) {
     // tslint:disable-next-line:no-console
     console.log("clicked!");
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  private onTouchEnd(event: React.TouchEvent) {
+    // tslint:disable-next-line:no-console
+    console.log("touched!");
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   private disabled() {
