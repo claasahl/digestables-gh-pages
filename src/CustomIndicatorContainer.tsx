@@ -4,23 +4,39 @@ import { components } from "react-select";
 import { IndicatorContainerProps } from "react-select/lib/components/containers";
 import { Option } from "react-select/lib/filters";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class CustomIndicatorsContainer extends React.Component<
   IndicatorContainerProps<Option>
 > {
+  constructor(props: IndicatorContainerProps<Option>) {
+    super(props);
+    this.disabled = this.disabled.bind(this);
+  }
   public render() {
     return (
-      <div style={{ background: "green" }}>
-        <components.IndicatorsContainer {...this.props} />
-        <button
-          type="button"
-          className="btn btn-outline-lite"
-          // onClick={this.save}
-          // disabled={props.selectOption.length === 0}
-        >
-          Save
-        </button>
+      <div style={{ background: "pink" }}>
+        <components.IndicatorsContainer {...this.props}>
+          <button
+            className="btn"
+            type="submit"
+            onClick={this.onClick}
+            disabled={this.disabled()}
+          >
+            <FontAwesomeIcon icon="file-archive" />
+          </button>
+          {this.props.children}
+        </components.IndicatorsContainer>
       </div>
     );
+  }
+  private onClick() {
+    // tslint:disable-next-line:no-console
+    console.log("clicked!");
+  }
+
+  private disabled() {
+    return (this.props.selectProps.value || []).length === 0;
   }
 }
 

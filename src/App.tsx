@@ -13,11 +13,15 @@ import { saveAs } from "file-saver";
 import * as JSZip from "jszip";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCookie, faCookieBite } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCookie,
+  faCookieBite,
+  faFileArchive
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CustomIndicatorsContainer from "./CustomIndicatorContainer";
 
-library.add(faCookie, faCookieBite);
+library.add(faCookie, faCookieBite, faFileArchive);
 
 interface IState {
   selectedOptions: IDigestable[];
