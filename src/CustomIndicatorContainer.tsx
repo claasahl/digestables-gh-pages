@@ -6,12 +6,6 @@ import { Option } from "react-select/lib/filters";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const RenderButton = (props: any) => (
-  <button className="btn" type="submit" {...props}>
-    <FontAwesomeIcon icon="file-archive" />
-  </button>
-);
-
 class CustomIndicatorsContainer extends React.Component<
   IndicatorContainerProps<Option>
 > {
@@ -21,13 +15,12 @@ class CustomIndicatorsContainer extends React.Component<
   }
   public render() {
     return (
-      <div style={{ background: "pink" }}>
+      <div>
         <components.IndicatorsContainer {...this.props}>
           {!this.disabled() && (
-            <RenderButton
-              onMouseDown={this.onMouseDown}
-              onTouchEnd={this.onTouchEnd}
-            />
+            <div onMouseDown={this.onMouseDown} onTouchEnd={this.onTouchEnd}>
+              <FontAwesomeIcon icon="file-archive" />
+            </div>
           )}
           {this.props.children}
         </components.IndicatorsContainer>
