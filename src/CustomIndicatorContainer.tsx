@@ -5,6 +5,7 @@ import { IndicatorContainerProps } from "react-select/lib/components/containers"
 import { Option } from "react-select/lib/filters";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CustomIndicatorSeparator from "./CustomIndicatorSeparator";
 
 class CustomIndicatorsContainer extends React.Component<
   IndicatorContainerProps<Option>
@@ -17,12 +18,13 @@ class CustomIndicatorsContainer extends React.Component<
     return (
       <div>
         <components.IndicatorsContainer {...this.props}>
+          {this.props.children}
+          {!this.disabled() && <CustomIndicatorSeparator />}
           {!this.disabled() && (
             <div onMouseDown={this.onMouseDown} onTouchEnd={this.onTouchEnd}>
               <FontAwesomeIcon icon="file-archive" />
             </div>
           )}
-          {this.props.children}
         </components.IndicatorsContainer>
       </div>
     );
