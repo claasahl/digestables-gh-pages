@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { css } from "emotion";
 import { components } from "react-select";
 import { IndicatorContainerProps } from "react-select/lib/components/containers";
 import { Option } from "react-select/lib/filters";
@@ -15,13 +16,25 @@ class CustomIndicatorsContainer extends React.Component<
     this.disabled = this.disabled.bind(this);
   }
   public render() {
+    const { cx, getStyles, className } = this.props;
     return (
       <div>
         <components.IndicatorsContainer {...this.props}>
           {this.props.children}
           {!this.disabled() && <CustomIndicatorSeparator />}
           {!this.disabled() && (
-            <div onMouseDown={this.onMouseDown} onTouchEnd={this.onTouchEnd}>
+            <div
+              className={cx(
+                css(getStyles("dropdownIndicator", this.props)),
+                {
+                  "dropdown-indicator": true,
+                  indicator: true
+                },
+                className
+              )}
+              onMouseDown={this.onMouseDown}
+              onTouchEnd={this.onTouchEnd}
+            >
               <FontAwesomeIcon icon="file-archive" />
             </div>
           )}
