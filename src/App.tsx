@@ -19,7 +19,7 @@ import {
   faFileArchive
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CustomControl from "./CustomControl";
+import { makeControl } from "./CustomControl";
 import CustomIndicatorSeparator from "./CustomIndicatorSeparator";
 
 library.add(faCookie, faCookieBite, faFileArchive);
@@ -41,6 +41,11 @@ class App extends React.Component<any, IState> {
 
   public render() {
     const { selectedOptions } = this.state;
+    const CustomControl = makeControl({
+      isDisabled: this.isDisabled,
+      onMouseDown: this.onMouseDown,
+      onTouchEnd: this.onTouchEnd
+    });
     return (
       <div className="App">
         <header className="App-header">
@@ -71,6 +76,24 @@ class App extends React.Component<any, IState> {
         </div>
       </div>
     );
+  }
+
+  private onMouseDown(event: React.MouseEvent) {
+    // tslint:disable-next-line:no-console
+    console.log("clicked!");
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  private onTouchEnd(event: React.TouchEvent) {
+    // tslint:disable-next-line:no-console
+    console.log("touched!");
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  private isDisabled(): boolean {
+    return false;
   }
 
   private async fetch(option: IDigestable, file: string): Promise<string> {
