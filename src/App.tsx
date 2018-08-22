@@ -19,7 +19,7 @@ import {
   faFileArchive
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CustomIndicatorsContainer from "./CustomIndicatorContainer";
+import CustomControl from "./CustomControl";
 import CustomIndicatorSeparator from "./CustomIndicatorSeparator";
 
 library.add(faCookie, faCookieBite, faFileArchive);
@@ -54,8 +54,8 @@ class App extends React.Component<any, IState> {
             isMulti={true}
             defaultOptions={this.options(data)}
             components={makeAnimated({
-              IndicatorSeparator: CustomIndicatorSeparator,
-              IndicatorsContainer: CustomIndicatorsContainer
+              Control: CustomControl,
+              IndicatorSeparator: CustomIndicatorSeparator
             })}
             onChange={this.onChange}
             loadOptions={this.loadOptions}
