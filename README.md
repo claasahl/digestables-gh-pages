@@ -63,6 +63,8 @@ One can mvoe the `pluginManagement`-tag into a parent pom.xml file.
 </project>
 ```
 
-## Favicon
+## Favicon and Styles
 
 [Font Awesome Favicon Generator](https://gauger.io/fonticon/)
+
+[Chocolate Chip Cookies Color Palette](http://www.color-hex.com/color-palette/16892)
