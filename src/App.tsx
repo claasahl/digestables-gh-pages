@@ -34,6 +34,9 @@ class App extends React.Component<any, IState> {
     this.state = {
       selectedOptions: []
     };
+    this.onMouseDown = this.onMouseDown.bind(this);
+    this.onTouchEnd = this.onTouchEnd.bind(this);
+    this.isDisabled = this.isDisabled.bind(this);
     this.save = this.save.bind(this);
     this.onChange = this.onChange.bind(this);
     this.loadOptions = this.loadOptions.bind(this);
@@ -65,35 +68,25 @@ class App extends React.Component<any, IState> {
             onChange={this.onChange}
             loadOptions={this.loadOptions}
           />
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-lg"
-            onClick={this.save}
-            disabled={selectedOptions.length === 0}
-          >
-            Save
-          </button>
         </div>
       </div>
     );
   }
 
   private onMouseDown(event: React.MouseEvent) {
-    // tslint:disable-next-line:no-console
-    console.log("clicked!");
     event.preventDefault();
     event.stopPropagation();
+    this.save();
   }
 
   private onTouchEnd(event: React.TouchEvent) {
-    // tslint:disable-next-line:no-console
-    console.log("touched!");
     event.preventDefault();
     event.stopPropagation();
+    this.save();
   }
 
   private isDisabled(): boolean {
-    return false;
+    return this.state.selectedOptions.length === 0;
   }
 
   private async fetch(option: IDigestable, file: string): Promise<string> {
