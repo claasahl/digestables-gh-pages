@@ -7,14 +7,14 @@
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
   */
-  color: rgba(255, 56, 96, 1);
+  color: #ffdead;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #7b3d11;
   height: 150px;
   padding: 20px;
-  color: white;
+  color: #f5fffa;
 }
 
 .App-title {
@@ -23,6 +23,11 @@
 
 .App-intro {
   font-size: large;
+}
+
+.App-content {
+  padding: 10px;
+  color: #52280b;
 }
 
 @keyframes App-logo-spin {

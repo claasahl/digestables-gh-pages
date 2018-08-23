@@ -55,8 +55,8 @@ class App extends React.Component<any, IState> {
           <FontAwesomeIcon className="App-logo" size="5x" icon="cookie-bite" />
           <h1 className="App-title">Combine Digestable Examples</h1>
         </header>
-        <SelectedDigestables selected={selectedOptions} />
-        <div className="container">
+        <div className="App-content container">
+          <SelectedDigestables selected={selectedOptions} />
           <Select<Option>
             isClearable={true}
             isMulti={true}
