@@ -1,0 +1,8 @@
+.customIndicatorSeparatorStyle {
+  align-self: "stretch";
+  background-color: #52280b;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 1px;
+  height: 20px;
+}

@@ -1,15 +1,9 @@
 import * as React from "react";
+import "./CustomIndicatorSeparator.css";
 
-const indicatorSeparatorStyle = {
-  alignSelf: "stretch",
-  backgroundColor: "green",
-  marginBottom: 8,
-  marginTop: 8,
-  width: 1
-};
 
 const CustomIndicatorSeparator = ({ innerProps }: any) => {
-  return <span style={indicatorSeparatorStyle} {...innerProps} />;
+  return <span className="customIndicatorSeparatorStyle" {...innerProps} />;
 };
 
 export default CustomIndicatorSeparator;
