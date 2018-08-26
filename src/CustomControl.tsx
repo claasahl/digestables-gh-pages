@@ -24,14 +24,16 @@ export function makeControl(
         {!callbacks.isDisabled() && <CustomIndicatorSeparator />}
         {!callbacks.isDisabled() && (
           <div
-            className={cx(
-              css(getStyles("dropdownIndicator", props)),
-              {
-                "dropdown-indicator": true,
-                indicator: true
-              },
-              className
-            )}
+            className={
+              cx(
+                css(getStyles("dropdownIndicator", props)),
+                {
+                  "dropdown-indicator": true,
+                  indicator: true
+                },
+                className
+              ) as string
+            }
             onMouseDown={callbacks.onMouseDown}
             onTouchEnd={callbacks.onTouchEnd}
           >

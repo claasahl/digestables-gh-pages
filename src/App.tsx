@@ -138,7 +138,8 @@ class App extends React.Component<any, IState> {
     } catch (error) {
       // ignore
     }
-    const filter = createFilter();
+    // TODO review signature of createFilter
+    const filter = createFilter(null);
     const filteredDigestables = this.options(digestables).filter(option =>
       filter(option, inputValue)
     );
