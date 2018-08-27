@@ -10,7 +10,7 @@ class SelectedDigestables extends React.Component<IProps> {
   public render() {
     const { selected } = this.props;
     if (selected.length === 0) {
-      return <p>Start by Selecting Digestable Examples.</p>;
+      return null;
     }
     return (
       <p>

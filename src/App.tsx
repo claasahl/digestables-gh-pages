@@ -53,7 +53,7 @@ class App extends React.Component<any, IState> {
       <div className="App">
         <header className="App-header">
           <FontAwesomeIcon className="App-logo" size="5x" icon="cookie-bite" />
-          <h1 className="App-title">Combine Digestable Examples</h1>
+          <h1 className="App-title">Digestable Examples</h1>
         </header>
         <div className="App-content container">
           <SelectedDigestables selected={selectedOptions} />
@@ -67,6 +67,7 @@ class App extends React.Component<any, IState> {
             })}
             onChange={this.onChange}
             loadOptions={this.loadOptions}
+            placeholder="Start by Selecting at least one Digestable Example..."
           />
         </div>
       </div>
